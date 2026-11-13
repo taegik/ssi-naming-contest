@@ -24,8 +24,8 @@
     --amber: #D97706;
     --amber-bg: #FFFBEB;
     --danger: #DC2626;
-    --radius-lg: 18px;
-    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-md: 14px;
     --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
     --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.08);
   }
@@ -35,6 +35,10 @@
     margin: 0;
     padding: 0;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -107,7 +111,6 @@
     text-align: center;
     margin-bottom: 12px;
     outline: none;
-    transition: 0.2s;
   }
 
   .lock-card input:focus {
@@ -136,12 +139,12 @@
   .hero-header {
     background: linear-gradient(135deg, #0F172A 0%, #1E293B 68%, #18363B 100%);
     color: white;
-    padding: 28px 24px 42px;
+    padding: 28px 24px 44px;
     border-bottom: 4px solid var(--mint);
   }
 
   .hero-inner {
-    max-width: 1280px;
+    max-width: 1260px;
     margin: 0 auto;
   }
 
@@ -165,7 +168,6 @@
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.02em;
   }
 
   .hero-tools {
@@ -190,6 +192,7 @@
     gap: 6px;
     transition: all 0.15s ease;
     border: none;
+    text-decoration: none;
   }
 
   .btn-glass {
@@ -270,12 +273,11 @@
   }
 
   .hero-title-area h1 {
-    font-size: 1.9rem;
+    font-size: 1.95rem;
     font-weight: 800;
     letter-spacing: -0.025em;
     line-height: 1.25;
     margin-bottom: 6px;
-    color: #FFFFFF;
   }
 
   .hero-title-area p {
@@ -283,126 +285,238 @@
     color: #CBD5E1;
   }
 
-  .hero-kpi-strip {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+  /* Sticky Step Anchor Navigator (스텝 바이 스텝 퍼널 진행 바) */
+  .step-nav-sticky {
+    position: sticky;
+    top: 12px;
+    z-index: 500;
+    max-width: 1260px;
+    margin: -24px auto 26px;
+    padding: 0 24px;
   }
 
-  .hero-kpi {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 14px;
-    padding: 11px 18px;
-    min-width: 126px;
-  }
-
-  .hero-kpi.highlight {
-    background: rgba(0, 164, 153, 0.16);
-    border-color: rgba(0, 164, 153, 0.5);
-  }
-
-  .hero-kpi .k-label {
-    font-size: 0.75rem;
-    color: #94A3B8;
-    font-weight: 600;
-  }
-
-  .hero-kpi.highlight .k-label {
-    color: #5EEAD4;
-  }
-
-  .hero-kpi .k-val {
-    font-size: 1.28rem;
-    font-weight: 800;
-    margin-top: 2px;
-    color: #FFFFFF;
-  }
-
-  /* Main Container */
-  .container {
-    max-width: 1280px;
-    margin: -22px auto 0;
-    padding: 0 24px 100px;
-    position: relative;
-    z-index: 10;
-  }
-
-  /* Pill Navigation Card */
-  .nav-card {
-    background: var(--surface);
-    border-radius: 16px;
-    padding: 10px 14px;
-    box-shadow: var(--shadow-md);
+  .step-nav-bar {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 14px;
+    box-shadow: var(--shadow-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-
-  .nav-tabs {
-    display: flex;
     gap: 6px;
-    flex-wrap: wrap;
+    overflow-x: auto;
   }
 
-  .tab-btn {
-    padding: 9px 16px;
+  .step-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
     border-radius: 999px;
-    background: transparent;
-    border: none;
+    font-size: 0.86rem;
     font-weight: 700;
-    color: var(--muted);
-    cursor: pointer;
+    color: var(--text-sub);
+    text-decoration: none;
+    white-space: nowrap;
     transition: 0.15s;
-    font-size: 0.9rem;
   }
 
-  .tab-btn:hover {
-    color: var(--charcoal);
+  .step-link:hover {
     background: #F1F5F9;
+    color: var(--charcoal);
   }
 
-  .tab-btn.active {
+  .step-link.active {
     background: var(--charcoal);
     color: white;
   }
 
-  /* Control Panel */
-  .control-panel {
-    background: var(--surface);
-    border-radius: 16px;
-    padding: 16px 20px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  .step-link .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--mint-soft);
+    color: var(--mint-dark);
+    font-size: 0.76rem;
+    font-weight: 800;
   }
 
-  .control-row {
+  .step-link.active .step-num {
+    background: var(--mint);
+    color: white;
+  }
+
+  /* Main Container */
+  .container {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 0 24px 110px;
+  }
+
+  /* Section Block */
+  .funnel-section {
+    scroll-margin-top: 84px;
+    margin-bottom: 42px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .step-badge {
+    display: inline-block;
+    background: var(--charcoal);
+    color: #5EEAD4;
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    letter-spacing: -0.02em;
+  }
+
+  .section-sub {
+    font-size: 0.92rem;
+    color: var(--text-sub);
+    margin-top: 2px;
+  }
+
+  .panel-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+  }
+
+  /* STEP 1: 결과 개요 KPI Grid */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .kpi-box {
+    background: #F8FAFC;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--charcoal);
+  }
+
+  .kpi-box.mint {
+    background: var(--mint-soft);
+    border-color: var(--mint-border);
+    border-left-color: var(--mint);
+  }
+
+  .kpi-box .label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .kpi-box .val {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--charcoal);
+    margin: 4px 0 2px;
+  }
+
+  .kpi-box.mint .val {
+    color: var(--mint-dark);
+  }
+
+  .kpi-box .desc {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+  }
+
+  /* STEP 2: 선정 기준 (위닝룰즈 9 + 5대 평가 척도) */
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+  }
+
+  .mvc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .mvc-mini {
+    background: #F8FAFC;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--mint);
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .mvc-mini h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+
+  .mvc-mini li {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    margin-left: 14px;
+    margin-bottom: 4px;
+  }
+
+  .eval-rule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .eval-rule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #F8FAFC;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-size: 0.86rem;
+  }
+
+  /* STEP 3: 군집별 후보 미니 카드 그리드 */
+  .filter-toolbar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-  }
-
-  .mvc-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .mvc-title {
-    font-size: 0.86rem;
-    font-weight: 800;
-    color: var(--charcoal);
+    box-shadow: var(--shadow-sm);
   }
 
   .pillar-chip {
@@ -414,12 +528,6 @@
     color: var(--text-sub);
     border: 1px solid var(--border);
     cursor: pointer;
-    transition: 0.15s;
-  }
-
-  .pillar-chip:hover {
-    border-color: var(--mint);
-    color: var(--mint-dark);
   }
 
   .pillar-chip.active {
@@ -428,324 +536,230 @@
     border-color: var(--mint);
   }
 
-  .filter-inputs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    padding-top: 10px;
-    border-top: 1px solid #F1F5F9;
-  }
-
-  .tab-content {
-    display: none;
-  }
-
-  .tab-content.active {
-    display: block;
-  }
-
-  /* Card Feed */
-  .card-feed {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
-
-  .cand-card {
+  .cluster-block {
     background: var(--surface);
     border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
+    margin-bottom: 18px;
+  }
+
+  .cluster-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cluster-head h3 {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mini-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 14px;
+  }
+
+  .mini-cand-card {
     border: 1.5px solid var(--border);
-    padding: 28px 32px;
-    transition: all 0.2s ease;
-    position: relative;
+    border-radius: 16px;
+    padding: 18px;
+    background: #FAFBFD;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
   }
 
-  .cand-card:hover {
-    box-shadow: var(--shadow-md);
-    border-color: #CBD5E1;
-  }
-
-  .cand-card.is-final {
+  .mini-cand-card:hover {
     border-color: var(--mint);
-    background: linear-gradient(to bottom, #FFFFFF 0%, #F4FBFB 100%);
-    box-shadow: 0 8px 28px rgba(0, 164, 153, 0.12);
+    background: #FFFFFF;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
 
-  .cand-card.is-compare {
-    border-color: #F59E0B;
+  .mini-cand-card.picked {
+    border-color: var(--mint);
+    background: var(--mint-soft);
   }
 
-  .card-top {
+  .mini-cand-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 6px;
   }
 
-  .card-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--charcoal);
-    color: white;
+  .mini-cand-name {
+    font-size: 1.18rem;
+    font-weight: 900;
+    color: var(--charcoal);
+  }
+
+  .score-badge {
+    background: white;
+    color: var(--mint-dark);
+    border: 1px solid var(--mint-border);
     font-size: 0.78rem;
     font-weight: 800;
     padding: 3px 10px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-  }
-
-  .cand-card.is-final .card-num {
-    background: var(--mint);
-  }
-
-  .card-title-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .cand-name {
-    font-size: 1.75rem;
-    font-weight: 900;
-    color: var(--charcoal);
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-  }
-
-  .score-pill-lg {
-    background: var(--mint-soft);
-    color: var(--mint-dark);
-    border: 1px solid var(--mint-border);
-    font-size: 0.92rem;
-    font-weight: 800;
-    padding: 4px 12px;
     border-radius: 999px;
+    white-space: nowrap;
   }
 
-  .cand-slogan {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--mint-dark);
-    margin-top: 6px;
+  .mini-cand-slogan {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-sub);
+    margin-bottom: 12px;
+    line-height: 1.45;
   }
 
-  .tag-row {
+  .mini-cand-tags {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin-top: 12px;
-    align-items: center;
+    margin-bottom: 14px;
   }
 
   .pill-tag {
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 700;
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 999px;
-    background: #F1F5F9;
-    color: var(--text-sub);
+    background: #E2E8F0;
+    color: var(--charcoal);
   }
 
   .pill-mint {
-    background: var(--mint-soft);
-    color: var(--mint-dark);
+    background: #CCFBF1;
+    color: #0F766E;
   }
 
   .pill-amber {
     background: var(--amber-bg);
     color: var(--amber);
     border: 1px solid #FDE68A;
-    cursor: pointer;
-    transition: 0.15s;
   }
 
-  .pill-amber:hover {
-    background: #FEF3C7;
-  }
-
-  .card-actions {
+  .mini-cand-footer {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    gap: 6px;
   }
 
-  .card-body-grid {
+  /* STEP 4: 선택 후보 나란히 비교 보드 */
+  .compare-board-grid {
     display: grid;
-    grid-template-columns: 1.35fr 0.65fr;
-    gap: 24px;
-    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
   }
 
-  .desc-text {
-    font-size: 0.98rem;
-    color: var(--text);
-    line-height: 1.7;
-    background: #F8FAFC;
-    padding: 16px 20px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border);
-    margin-bottom: 14px;
-  }
-
-  .winning-strip {
-    background: var(--mint-soft);
-    border: 1px solid var(--mint-border);
-    border-left: 4px solid var(--mint);
-    border-radius: var(--radius-md);
-    padding: 13px 16px;
-    margin-bottom: 14px;
-  }
-
-  .winning-strip-head {
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--mint-dark);
-    margin-bottom: 2px;
-  }
-
-  .winning-strip-quote {
-    font-size: 0.96rem;
-    font-weight: 800;
-    color: var(--charcoal);
-  }
-
-  .winning-strip-why {
-    font-size: 0.85rem;
-    color: var(--text-sub);
-    margin-top: 3px;
-  }
-
-  .precheck-inline {
+  .compare-col-card {
+    background: var(--surface);
+    border: 1.5px solid var(--mint-border);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 0.84rem;
-    color: var(--text-sub);
-    background: #F8FAFC;
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .precheck-inline span {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .ok { color: var(--mint-dark); font-weight: 800; }
-  .warn { color: var(--amber); font-weight: 800; }
-  .bad { color: var(--danger); font-weight: 800; }
-
-  /* Mini Phone */
-  .mini-phone {
+  .phone-mock {
     background: var(--charcoal);
-    border-radius: 20px;
-    padding: 12px;
-    color: white;
+    border-radius: 18px;
+    padding: 11px;
+    margin: 12px 0;
   }
 
-  .mini-screen {
+  .phone-inner {
     background: #F8FAFC;
-    color: var(--charcoal);
-    border-radius: 14px;
-    padding: 14px;
+    border-radius: 12px;
+    padding: 12px;
   }
 
-  .mini-app-head {
+  .app-row {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
-  .mini-app-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 13px;
+  .app-sq {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     background: linear-gradient(135deg, #1E293B 0%, #00A499 100%);
     color: white;
     font-weight: 800;
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 3px;
+    padding: 2px;
     flex-shrink: 0;
   }
 
-  .mini-push {
+  .push-bubble {
     background: white;
-    border-radius: 10px;
-    padding: 10px 12px;
+    border-radius: 9px;
+    padding: 8px 10px;
     border-left: 3px solid var(--mint);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-    font-size: 0.82rem;
-    margin-bottom: 8px;
+    font-size: 0.8rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
 
-  /* Footer Eval */
-  .card-footer-eval {
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px dashed var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .eval-drawer {
+  /* Drawer (우측 상세 & 중복 로데이터 서랍) */
+  .drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    z-index: 1600;
     display: none;
-    margin-top: 14px;
-    background: #F8FAFC;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 20px;
+    justify-content: flex-end;
   }
 
-  .eval-drawer.open {
-    display: block;
+  .drawer-backdrop.active {
+    display: flex;
   }
 
-  .eval-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px;
-  }
-
-  .eval-item {
+  .drawer-panel {
     background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
+    width: 100%;
+    max-width: 720px;
+    height: 100%;
+    overflow-y: auto;
+    padding: 30px;
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.25);
+    animation: slideIn 0.2s ease-out;
   }
 
-  .score-btns {
-    display: flex;
-    gap: 4px;
+  @keyframes slideIn {
+    from { transform: translateX(40px); opacity: 0.7; }
+    to { transform: translateX(0); opacity: 1; }
   }
 
   .s-btn {
-    width: 28px;
-    height: 28px;
+    width: 29px;
+    height: 29px;
     border-radius: 7px;
     border: 1px solid var(--border);
     background: #F8FAFC;
@@ -776,73 +790,64 @@
   .blind-masked::after {
     content: "🔒 블라인드 보호";
     color: #475569;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
     position: absolute;
     left: 10px;
     top: 1px;
   }
 
-  /* Generic Cards & Tables */
-  .panel-card {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    padding: 26px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border);
-    margin-bottom: 20px;
-  }
-
+  /* Table */
   .table-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; text-align: left; }
-  th, td { padding: 13px 14px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  th, td { padding: 11px 12px; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
   th { background: #F8FAFC; font-weight: 700; color: var(--charcoal); white-space: nowrap; }
-  tr:hover td { background: var(--mint-soft); }
 
-  /* Modals */
-  .modal-backdrop {
+  /* Floating Bottom Bar */
+  .floating-bar {
     position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.65);
-    z-index: 1500;
-    display: none;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--charcoal);
+    border-top: 2px solid var(--mint);
+    color: white;
+    padding: 12px 24px;
+    z-index: 900;
+    box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.25);
+  }
+
+  .floating-inner {
+    max-width: 1260px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .modal-backdrop.active { display: flex; }
-
-  .modal-box {
-    background: white;
-    border-radius: 20px;
-    max-width: 920px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 30px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  .sel-pill {
+    background: var(--mint);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.83rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
 
-  .mvc-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-    margin-top: 16px;
+  .sel-pill button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
   }
 
-  .mvc-col {
-    background: #F8FAFC;
-    border: 1px solid var(--border);
-    border-top: 4px solid var(--mint);
-    border-radius: 14px;
-    padding: 16px;
-  }
-
-  .mvc-col h4 { color: var(--charcoal); margin-bottom: 8px; font-size: 1.02rem; }
-  .mvc-col li { font-size: 0.86rem; color: var(--text-sub); margin-left: 16px; margin-bottom: 6px; }
-
-  /* Presentation Mode */
+  /* Presentation Modal */
   #presentation-modal {
     position: fixed;
     inset: 0;
@@ -867,50 +872,6 @@
     align-items: center;
   }
 
-  /* Bottom Bar */
-  .floating-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--charcoal);
-    border-top: 2px solid var(--mint);
-    color: white;
-    padding: 13px 24px;
-    z-index: 900;
-    box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.25);
-  }
-
-  .floating-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .sel-pill {
-    background: var(--mint);
-    color: white;
-    padding: 5px 13px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .sel-pill button {
-    background: none;
-    border: none;
-    color: white;
-    font-weight: 900;
-    cursor: pointer;
-  }
-
   @media print {
     body * { visibility: hidden; }
     #print-area, #print-area * { visibility: visible; }
@@ -919,7 +880,8 @@
   }
 
   @media (max-width: 900px) {
-    .card-body-grid { grid-template-columns: 1fr; }
+    .criteria-grid { grid-template-columns: 1fr; }
+    .mvc-cards { grid-template-columns: 1fr; }
     .pres-body { grid-template-columns: 1fr; }
   }
 </style>
@@ -943,7 +905,6 @@
     <div class="hero-top-bar">
       <div class="hero-badge">✦ 상상인그룹 통합앱 네이밍 공모전 · 임원 심의 리포트</div>
       <div class="hero-tools">
-        <button class="btn btn-glass" onclick="openMvcModal()">🧭 상상인 위닝룰즈 9</button>
         <button id="btn-blind" class="btn btn-glass active" onclick="toggleBlindMode()">🙈 블라인드 ON</button>
         <button id="btn-font" class="btn btn-glass" onclick="toggleLargeFont()">🔍 큰글씨</button>
         <button class="btn btn-mint btn-sm" style="border-radius:999px; padding:7px 15px;" onclick="openPresentation()">🖥️ 회의실 발표 모드</button>
@@ -953,254 +914,223 @@
     <div class="hero-main">
       <div class="hero-title-area">
         <h1>하나의 상상인, 새로운 이름 최종 5선 선정</h1>
-        <p>임직원이 제안한 191건의 아이디어를 바탕으로 그룹의 미래를 담을 결선 후보 5선을 심의합니다.</p>
-      </div>
-
-      <div class="hero-kpi-strip">
-        <div class="hero-kpi">
-          <div class="k-label">유효 응모 건수</div>
-          <div class="k-val">184건</div>
-        </div>
-        <div class="hero-kpi">
-          <div class="k-label">군집 분류</div>
-          <div class="k-val">5개 유형</div>
-        </div>
-        <div class="hero-kpi highlight">
-          <div class="k-label">최종 선정 현황</div>
-          <div class="k-val" id="hero-final-count">0 / 5선</div>
-        </div>
+        <p>아래로 스크롤하며 <b>① 결과 개요 → ② 선정 기준 → ③ 군집별 후보 탐색 → ④ 후보 비교 → ⑤ 최종 5선 확정</b> 순으로 심의를 진행합니다.</p>
       </div>
     </div>
   </div>
 </header>
 
+<!-- 상단 고정 스텝 진행 네비게이션 (클릭 시 해당 섹션으로 부드럽게 스크롤) -->
+<nav class="step-nav-sticky no-print">
+  <div class="step-nav-bar">
+    <a href="#step-1" class="step-link active" id="nav-step-1"><span class="step-num">1</span> 결과 개요</a>
+    <a href="#step-2" class="step-link" id="nav-step-2"><span class="step-num">2</span> 후보 선정 기준</a>
+    <a href="#step-3" class="step-link" id="nav-step-3"><span class="step-num">3</span> 군집별 후보 탐색</a>
+    <a href="#step-4" class="step-link" id="nav-step-4"><span class="step-num">4</span> 선택 후보 비교 (<span id="nav-pick-cnt">0</span>/5)</a>
+    <a href="#step-5" class="step-link" id="nav-step-5"><span class="step-num">5</span> 최종 확정 & 자료 생성</a>
+  </div>
+</nav>
+
 <div class="container no-print">
-  <!-- 상단 필(Pill) 네비게이션 -->
-  <div class="nav-card">
-    <div class="nav-tabs">
-      <button class="tab-btn active" data-tab="tab-feed" onclick="switchTab('tab-feed')">📋 후보 카드 피드 (전체 스크롤)</button>
-      <button class="tab-btn" data-tab="tab-cluster" onclick="switchTab('tab-cluster')">🧩 군집 기준으로 보기</button>
-      <button class="tab-btn" data-tab="tab-raw" onclick="switchTab('tab-raw')">📊 전체 내역 표 (중복 로데이터 포함)</button>
-      <button class="tab-btn" data-tab="tab-compare" onclick="switchTab('tab-compare')">⚖️ 2~3개 임시 비교</button>
-      <button class="tab-btn" data-tab="tab-tally" onclick="switchTab('tab-tally')">🗳️ 다수 임원 취합 & 추천</button>
-      <button class="tab-btn" data-tab="tab-export" onclick="switchTab('tab-export')">📑 5선 확정 후 자료 생성</button>
-    </div>
-  </div>
 
-  <!-- TAB 1: 아래로 쭉 내려 볼 수 있는 카드 피드 레이아웃 -->
-  <div id="tab-feed" class="tab-content active">
-    <div class="control-panel">
-      <div class="control-row">
-        <div class="mvc-group">
-          <span class="mvc-title">🧭 상상인 위닝룰즈 9:</span>
-          <button class="pillar-chip active" onclick="setMvcFilter('all', this)">전체 가치</button>
-          <button class="pillar-chip" onclick="setMvcFilter('도전', this)">🔥 도전 (변화·속도·배움)</button>
-          <button class="pillar-chip" onclick="setMvcFilter('연결', this)">🔗 연결 (인사이트·전원참여·회사전체)</button>
-          <button class="pillar-chip" onclick="setMvcFilter('존중', this)">🤝 존중 (투명소통·경청·다름인정)</button>
+  <!-- =========================================================
+       STEP 1. 공모 결과 개요
+  ========================================================== -->
+  <section id="step-1" class="funnel-section">
+    <div class="section-header">
+      <div>
+        <span class="step-badge">STEP 01 · OVERVIEW</span>
+        <h2 class="section-title">1. 통합앱 네이밍 공모전 결과 개요</h2>
+        <p class="section-sub">전 계열사 임직원이 참여한 응모 현황과 중복·오류 정제 결과를 먼저 확인합니다.</p>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="toggleFullRawTable()" id="btn-raw-toggle">📊 전체 원본 응모 표 펼치기 ▼</button>
+    </div>
+
+    <div class="panel-card">
+      <div class="kpi-grid">
+        <div class="kpi-box">
+          <div class="label">총 접수 / 유효 응모 건수</div>
+          <div class="val">184건 <span style="font-size:0.9rem; color:var(--muted); font-weight:600;">/ 191건</span></div>
+          <div class="desc">동일인 중복 및 오입력 7건 사전 정제 완료</div>
         </div>
-        <div style="font-size:0.84rem; color:var(--muted); font-weight:700;" id="feed-count-label">총 12개 후보 표시 중</div>
+        <div class="kpi-box">
+          <div class="label">네이밍 유형(군집) 분류</div>
+          <div class="val">5개 군집</div>
+          <div class="desc">상상인결합 · 명사형 · 동사형 · 영문형 · 위닝룰</div>
+        </div>
+        <div class="kpi-box">
+          <div class="label">다수 중복 제안 키워드</div>
+          <div class="val">상상톡 · 상상온 · 상상링크</div>
+          <div class="desc">임직원 공통으로 가장 많이 언급된 대표 안</div>
+        </div>
+        <div class="kpi-box mint">
+          <div class="label">금일 임원 심의 목표</div>
+          <div class="val" id="kpi-picked-val">0 / 5선 선정</div>
+          <div class="desc">2차 전 임직원 결선 투표 상정 후보 확정</div>
+        </div>
       </div>
 
-      <div class="filter-inputs">
-        <select id="feed-cluster" onchange="renderCardFeed()">
-          <option value="all">군집 유형 전체</option>
-          <option value="상상인 결합">군집1. 상상인 결합</option>
-          <option value="명사형">군집2-A. 명사형</option>
-          <option value="동사형">군집2-B. 동사형</option>
-          <option value="영문형">군집2-C. 영문형</option>
-          <option value="위닝룰 특화">군집3. 위닝룰 특화</option>
-        </select>
-        <select id="feed-sort" onchange="renderCardFeed()">
-          <option value="score">심의 점수 높은순</option>
-          <option value="dup">중복 제안 많은순</option>
-          <option value="name">가나다순</option>
-        </select>
-        <label style="font-size:0.84rem; font-weight:600; color:var(--text-sub); cursor:pointer;">
-          <input type="checkbox" id="feed-dup2" onchange="renderCardFeed()"> 중복 2건 이상만
+      <!-- 전체 원본 표 (기본 접힘, 필요 시 펼쳐서 확인) -->
+      <div id="full-raw-box" style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <strong style="color:var(--charcoal);">전체 유효 후보 일람 (클릭 시 상세·중복 로데이터 열람)</strong>
+          <input type="text" id="raw-filter-input" placeholder="후보명·슬로건 검색..." oninput="renderRawTable()" style="width:220px;">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>후보 네이밍</th>
+                <th>슬로건</th>
+                <th>군집</th>
+                <th>중복건수</th>
+                <th>사전검토</th>
+                <th>제안자</th>
+                <th>점수</th>
+                <th>선택</th>
+              </tr>
+            </thead>
+            <tbody id="raw-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       STEP 2. 후보 선정 기준 (상상인 위닝룰즈 9 + 5대 평가 척도)
+  ========================================================== -->
+  <section id="step-2" class="funnel-section">
+    <div class="section-header">
+      <div>
+        <span class="step-badge">STEP 02 · CRITERIA</span>
+        <h2 class="section-title">2. 후보 선정 기준 — 상상인 위닝룰즈 9 & 5대 심의 척도</h2>
+        <p class="section-sub">우리 그룹의 핵심 행동양식(도전·연결·존중)과 슈퍼앱 확장성을 기준으로 최종 5선을 선별합니다.</p>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="criteria-grid">
+        <div>
+          <strong style="font-size:1rem; color:var(--charcoal);">🧭 그룹 MVC 행동양식: 상상인 위닝룰즈 9</strong>
+          <div class="mvc-cards">
+            <div class="mvc-mini">
+              <h4>🔥 도전</h4>
+              <ul>
+                <li>변화를 이끌거나, 비키거나.</li>
+                <li>완성보다 속도, 성공보다 시도.</li>
+                <li>배움은 생존을 위한 가장 공격적인 투자다.</li>
+              </ul>
+            </div>
+            <div class="mvc-mini" style="border-top-color:var(--charcoal);">
+              <h4>🔗 연결</h4>
+              <ul>
+                <li>외부 인사이트를 내부 자산으로 연결한다.</li>
+                <li>직급에 상관없이 전원이 의사결정에 참여해야 한다.</li>
+                <li>우리 팀을 넘어 우리 회사의 답을 찾는다.</li>
+              </ul>
+            </div>
+            <div class="mvc-mini" style="border-top-color:var(--mint-dark);">
+              <h4>🤝 존중</h4>
+              <ul>
+                <li>우리는 뒤에서 말하지 않는다.</li>
+                <li>동료의 의견을 듣는 것도 월급에 포함이다.</li>
+                <li>다름을 인정해라. 내가 틀릴 수도 있다.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <strong style="font-size:1rem; color:var(--charcoal);">⭐ 5대 정량 심의 척도 (각 5점 · 총 25점 만점)</strong>
+          <div class="eval-rule-list">
+            <div class="eval-rule-item"><span><b>① 직관성·발음 용이성</b> — 부르기 쉽고 한 번에 각인되는가</span><span class="pill-tag pill-mint">5점</span></div>
+            <div class="eval-rule-item"><span><b>② 위닝룰·브랜드 정체성</b> — 상상인다움과 핵심가치가 담겼는가</span><span class="pill-tag pill-mint">5점</span></div>
+            <div class="eval-rule-item"><span><b>③ 2차 서비스 확장성</b> — 업무·복지 등 슈퍼앱 기능을 포괄하는가</span><span class="pill-tag pill-mint">5점</span></div>
+            <div class="eval-rule-item"><span><b>④ 전사 공감·호감도</b> — 전 계열사·전 직급이 애착을 가질 수 있는가</span><span class="pill-tag pill-mint">5점</span></div>
+            <div class="eval-rule-item"><span><b>⑤ 상표·실용 안정성</b> — 앱스토어 중복·상표 리스크가 없는가</span><span class="pill-tag pill-mint">5점</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       STEP 3. 군집별 후보들 간략히 보기 (클릭 시 상세·중복 로데이터 서랍 열림)
+  ========================================================== -->
+  <section id="step-3" class="funnel-section">
+    <div class="section-header">
+      <div>
+        <span class="step-badge">STEP 03 · EXPLORE BY CLUSTER</span>
+        <h2 class="section-title">3. 군집별 후보 탐색 및 선별 (최대 5개 선택)</h2>
+        <p class="section-sub">카드를 클릭하면 <b>기획 의도·중복 제안 전체 로데이터·세부 점수판</b>이 열립니다. 마음에 드는 후보의 <b>[+ 비교함 담기]</b>를 눌러주세요.</p>
+      </div>
+      <button class="btn btn-mint-soft btn-sm" onclick="autoPickTop5()">✨ 심의 점수 상위 5개 자동 담기</button>
+    </div>
+
+    <div class="filter-toolbar">
+      <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+        <span style="font-size:0.84rem; font-weight:800; color:var(--charcoal); margin-right:4px;">위닝룰즈 필터:</span>
+        <button class="pillar-chip active" onclick="setMvcFilter('all', this)">전체</button>
+        <button class="pillar-chip" onclick="setMvcFilter('도전', this)">🔥 도전</button>
+        <button class="pillar-chip" onclick="setMvcFilter('연결', this)">🔗 연결</button>
+        <button class="pillar-chip" onclick="setMvcFilter('존중', this)">🤝 존중</button>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <label style="font-size:0.83rem; font-weight:600; color:var(--text-sub); cursor:pointer;">
+          <input type="checkbox" id="step3-dup2" onchange="renderClusterCards()"> 중복 2건 이상만
         </label>
-        <label style="font-size:0.84rem; font-weight:600; color:var(--text-sub); cursor:pointer;">
-          <input type="checkbox" id="feed-fav" onchange="renderCardFeed()"> ❤️ 즐겨찾기만
-        </label>
-        <input type="text" id="feed-search" placeholder="후보명, 슬로건, 기획 의도 검색..." oninput="renderCardFeed()" style="flex:1; min-width:200px;">
+        <input type="text" id="step3-search" placeholder="후보명·슬로건 검색..." oninput="renderClusterCards()" style="width:210px;">
       </div>
     </div>
 
-    <div class="card-feed" id="card-feed-list"></div>
-  </div>
+    <div id="cluster-sections-container"></div>
+  </section>
 
-  <!-- TAB 2: 군집 기준으로 보기 -->
-  <div id="tab-cluster" class="tab-content">
-    <div id="cluster-container"></div>
-  </div>
-
-  <!-- TAB 3: 전체 내역 표 -->
-  <div id="tab-raw" class="tab-content">
-    <div class="panel-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
-        <div>
-          <h2 style="font-size:1.2rem; color:var(--charcoal);">📊 전체 응모 내역 일람 & 중복 제안 로데이터</h2>
-          <p style="font-size:0.88rem; color:var(--muted);">각 행의 <b>[중복 N건 · 로데이터 보기]</b> 버튼을 누르면 해당 후보의 모든 개별 원본 응모 내역을 확인할 수 있습니다.</p>
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="btn btn-mint-soft btn-sm" onclick="openAllDupModal()">📂 전체 중복제안 로데이터 모아보기</button>
-          <input type="text" id="raw-search" placeholder="전체 내역 검색..." oninput="renderRawTab()" style="width:230px;">
-        </div>
+  <!-- =========================================================
+       STEP 4. 선택한 후보들 나란히 비교해보기
+  ========================================================== -->
+  <section id="step-4" class="funnel-section">
+    <div class="section-header">
+      <div>
+        <span class="step-badge">STEP 04 · COMPARE</span>
+        <h2 class="section-title">4. 선택한 후보 나란히 비교 & 실제 앱 화면 미리보기</h2>
+        <p class="section-sub">STEP 3에서 담은 후보들의 앱 아이콘, 푸시 알림 어감, 사전 검토(상표·앱스토어), 심의 점수를 나란히 대조합니다.</p>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>후보 네이밍</th>
-              <th>한 줄 슬로건</th>
-              <th>군집</th>
-              <th>위닝룰즈</th>
-              <th>중복 제안 (로데이터)</th>
-              <th>사전검토</th>
-              <th>제안자</th>
-              <th>총점</th>
-              <th>선정</th>
-            </tr>
-          </thead>
-          <tbody id="raw-tbody"></tbody>
-        </table>
-      </div>
+      <button class="btn btn-outline btn-sm" onclick="clearPicked()">선택 목록 비우기</button>
     </div>
-  </div>
 
-  <!-- TAB 4: 2~3개 임시 비교 -->
-  <div id="tab-compare" class="tab-content">
-    <div class="panel-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-        <div>
-          <h2 style="font-size:1.2rem; color:var(--charcoal);">⚖️ 2~3개 후보 나란히 비교 & 실제 앱 미리보기</h2>
-          <p style="font-size:0.88rem; color:var(--muted);">최종 5선 확정 전 헷갈리는 후보들의 실제 앱 아이콘, 푸시 알림, 위닝룰 연결성을 대조합니다.</p>
-        </div>
-        <button class="btn btn-outline btn-sm" onclick="clearCompare()">비교함 비우기</button>
+    <div id="compare-board-container"></div>
+  </section>
+
+  <!-- =========================================================
+       STEP 5. 후보 확정 및 후속 자료 자동 생성
+  ========================================================== -->
+  <section id="step-5" class="funnel-section">
+    <div class="section-header">
+      <div>
+        <span class="step-badge">STEP 05 · FINALIZE & EXPORT</span>
+        <h2 class="section-title">5. 최종 5선 확정 & 결선 투표 공지문·요약 리포트 생성</h2>
+        <p class="section-sub">확정된 5개 후보를 바탕으로 전 임직원 2차 결선 투표 안내문과 한 장 요약(PDF)을 즉시 생성합니다.</p>
       </div>
-      <div id="compare-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;"></div>
-    </div>
-  </div>
-
-  <!-- TAB 5: 다수 임원 취합 & 자동 추천 -->
-  <div id="tab-tally" class="tab-content">
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(380px, 1fr)); gap:20px;">
-      <div class="panel-card">
-        <h3 style="color:var(--charcoal); margin-bottom:8px;">🏆 5대 심의 기준 합산 TOP 5 자동 추천</h3>
-        <p style="font-size:0.86rem; color:var(--muted); margin-bottom:14px;">
-          ① 직관성·발음 ② 위닝룰·브랜드 정체성 ③ 2차 서비스 확장성 ④ 전사 공감·호감도 ⑤ 상표·실용 안정성 (총 25점)
-        </p>
-        <div id="auto-top5-box"></div>
-        <button class="btn btn-mint" style="width:100%; margin-top:14px;" onclick="applyAutoTop5()">✨ 점수 TOP 5를 최종 5선으로 일괄 적용</button>
-      </div>
-
-      <div class="panel-card">
-        <h3 style="color:var(--charcoal); margin-bottom:8px;">🗳️ 임원별 선택 내보내기 / 합산 취합</h3>
-        <p style="font-size:0.86rem; color:var(--muted); margin-bottom:12px;">
-          개별 태블릿에서 고르신 경우 각자의 코드를 복사해 아래에 붙여넣으면 득표가 합산됩니다.
-        </p>
-        <div style="display:flex; gap:8px; margin-bottom:10px;">
-          <input type="text" id="voter-name" placeholder="임원 직함/성함 (예: 홍OO 전무)" style="flex:1;">
-          <button class="btn btn-charcoal" onclick="exportVoteCode()">내 선택 코드 복사</button>
-        </div>
-        <textarea id="vote-json-box" rows="3" style="width:100%; border:1px solid var(--border); border-radius:10px; padding:10px; font-size:0.82rem; margin-bottom:10px;" placeholder="선택 코드 생성 또는 타 임원 코드 붙여넣기"></textarea>
-        <div style="display:flex; gap:8px;">
-          <button class="btn btn-mint" onclick="importVoteCode()">➕ 득표 합산 반영</button>
-          <button class="btn btn-outline" onclick="resetTallies()">초기화</button>
-        </div>
-        <div id="tally-result" style="margin-top:16px;"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 6: 5선 확정 후 자료 생성 -->
-  <div id="tab-export" class="tab-content">
-    <div class="panel-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
-        <div>
-          <h2 style="color:var(--charcoal); font-size:1.25rem;">📑 최종 5선 확정 후 후속 자료 자동 생성</h2>
-          <p style="font-size:0.88rem; color:var(--muted);">직급에 상관없이 전원이 참여하는 2차 결선 투표 공지문 초안과 한 장 요약(PDF)을 생성합니다.</p>
-        </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-charcoal" onclick="confirmFinalSelection()">✅ 최종 5선 확정하기</button>
         <button class="btn btn-mint" onclick="window.print()">🖨️ 심의 결과 한 장 요약 PDF 인쇄</button>
       </div>
-      <div id="export-body"></div>
     </div>
-  </div>
+
+    <div class="panel-card" id="step5-container"></div>
+  </section>
+
 </div>
 
+<!-- 인쇄 전용 영역 -->
 <div id="print-area" style="display:none;"></div>
 
-<!-- 중복 제안 전체 로데이터 조회 모달 -->
-<div class="modal-backdrop" id="dup-modal" onclick="if(event.target===this) closeDupModal()">
-  <div class="modal-box">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
-      <div>
-        <span class="pill-tag pill-mint" style="margin-bottom:6px; display:inline-block;">중복 제안 원본 로데이터</span>
-        <h3 id="dup-modal-title" style="color:var(--charcoal); font-size:1.3rem;">후보별 중복 응모 상세 내역</h3>
-      </div>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <input type="text" id="dup-modal-search" placeholder="원본 문구·의미 검색..." oninput="filterDupModalRows()" style="width:210px;">
-        <button class="btn btn-outline btn-sm" onclick="closeDupModal()">✕ 닫기</button>
-      </div>
-    </div>
-    <p style="font-size:0.86rem; color:var(--text-sub); margin-bottom:14px;">
-      동일·유사 네이밍으로 접수된 개별 임직원 응모 원본입니다. 상단 <b>블라인드 모드</b> 설정에 따라 제안자 정보가 연동됩니다.
-    </p>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>순번</th>
-            <th>대표 후보</th>
-            <th>원본 응모 표기</th>
-            <th>제안 슬로건</th>
-            <th>제안 사유 및 기획 의도 (원문)</th>
-            <th>제안자 (블라인드 연동)</th>
-          </tr>
-        </thead>
-        <tbody id="dup-modal-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- 상상인 위닝룰즈 9 모달 -->
-<div class="modal-backdrop" id="mvc-modal" onclick="if(event.target===this) closeMvcModal()">
-  <div class="modal-box">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:12px;">
-      <h3 style="color:var(--charcoal); font-size:1.25rem;">🧭 상상인그룹 MVC — 상상인 위닝룰즈 9</h3>
-      <button class="btn btn-outline btn-sm" onclick="closeMvcModal()">✕ 닫기</button>
-    </div>
-    <p style="font-size:0.88rem; color:var(--text-sub); margin-top:10px;">
-      통합앱 네이밍과 결선 투표 운영은 그룹 핵심 행동양식인 <b>도전 · 연결 · 존중</b>의 9가지 원칙을 기준으로 합니다.
-    </p>
-    <div class="mvc-grid">
-      <div class="mvc-col">
-        <h4>🔥 도전 (Challenge)</h4>
-        <ul>
-          <li>변화를 이끌거나, 비키거나.</li>
-          <li>완성보다 속도, 성공보다 시도.</li>
-          <li>배움은 생존을 위한 가장 공격적인 투자다.</li>
-        </ul>
-      </div>
-      <div class="mvc-col" style="border-top-color:var(--charcoal);">
-        <h4>🔗 연결 (Connection)</h4>
-        <ul>
-          <li>외부 인사이트를 내부 자산으로 연결한다.</li>
-          <li>직급에 상관없이 전원이 의사결정에 참여해야 한다.</li>
-          <li>우리 팀을 넘어 우리 회사의 답을 찾는다.</li>
-        </ul>
-      </div>
-      <div class="mvc-col" style="border-top-color:var(--mint-dark);">
-        <h4>🤝 존중 (Respect)</h4>
-        <ul>
-          <li>우리는 뒤에서 말하지 않는다.</li>
-          <li>동료의 의견을 듣는 것도 월급에 포함이다.</li>
-          <li>다름을 인정해라. 내가 틀릴 수도 있다.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<!-- 우측 상세 정보 & 중복 로데이터 슬라이드 서랍 (Drawer) -->
+<div class="drawer-backdrop" id="detail-drawer" onclick="if(event.target===this) closeDetailDrawer()">
+  <div class="drawer-panel" id="detail-drawer-content"></div>
 </div>
 
 <!-- 발표 모드 -->
@@ -1223,16 +1153,16 @@
   </div>
 </div>
 
-<!-- 하단 고정 바 -->
+<!-- 하단 고정 진행 바 -->
 <div class="floating-bar no-print">
   <div class="floating-inner">
     <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-      <strong style="font-size:0.92rem;">✅ 최종 5선 (<span id="bar-count">0</span>/5):</strong>
+      <strong style="font-size:0.9rem;">🎯 현재 담은 후보 (<span id="bar-count">0</span>/5):</strong>
       <div id="bar-pills" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
     </div>
     <div style="display:flex; gap:8px;">
-      <button class="btn btn-amber btn-sm" onclick="switchTab('tab-compare')">⚖️ 임시 비교 (<span id="bar-comp-count">0</span>/3)</button>
-      <button class="btn btn-mint btn-sm" onclick="switchTab('tab-export')">📑 확정 자료 생성</button>
+      <a href="#step-4" class="btn btn-amber btn-sm">4단계: 비교하기 ▼</a>
+      <a href="#step-5" class="btn btn-mint btn-sm">5단계: 확정하기 ▼</a>
     </div>
   </div>
 </div>
@@ -1370,12 +1300,7 @@ const initialCandidates = [
       { submittedName: "상상톡(Talk)", slogan: "전 계열사가 실시간으로 통하는 공간", reason: "공지와 칭찬도토리를 가장 빠르게 주고받는 느낌을 줍니다.", proposer: "상상인플러스저축은행 / 영업추진팀 이현수" },
       { submittedName: "상상톡", slogan: "가볍게 톡! 즐겁게 통하는 우리 회사", reason: "3글자로 짧고 임직원들에게 가장 익숙한 형태입니다.", proposer: "상상인증권 / 홀세일팀 박지훈" },
       { submittedName: "상상 톡", slogan: "상상인의 이야기가 시작되는 곳", reason: "칭찬과 격려가 활발히 오가는 문화를 표현했습니다.", proposer: "메디카코리아 / 기획관리팀 최은지" },
-      { submittedName: "Sangsang Talk", slogan: "Open Communication for All", reason: "수평적 조직문화를 대표하는 명칭입니다.", proposer: "시너지이노베이션 / 재무팀 정민수" },
-      { submittedName: "상상톡", slogan: "매일 아침 확인하는 우리 회사 소식통", reason: "사내 공지 전달력을 높이는 직관적 이름입니다.", proposer: "상상인 / 총무팀 오세훈" },
-      { submittedName: "상상톡", slogan: "동료의 의견을 경청하는 첫걸음", reason: "서로 존중하며 대화하는 문화를 담았습니다.", proposer: "상상인저축은행 / IT지원팀 유승호" },
-      { submittedName: "상상톡", slogan: "하나로 통하는 상상인", reason: "계열사 간 소통 단절을 해소한다는 의미입니다.", proposer: "상상인플러스저축은행 / 인사총무팀 배지은" },
-      { submittedName: "상상톡", slogan: "칭찬도토리와 함께하는 즐거운 소통", reason: "가장 많은 임직원이 떠올릴 수 있는 대중적인 이름입니다.", proposer: "상상인증권 / 리서치센터 장민아" },
-      { submittedName: "상상톡", slogan: "언제 어디서나 통하는 모바일 광장", reason: "모바일 앱에 최적화된 간결한 네이밍입니다.", proposer: "상상인 / 브랜드팀 홍수진" }
+      { submittedName: "Sangsang Talk", slogan: "Open Communication for All", reason: "수평적 조직문화를 대표하는 명칭입니다.", proposer: "시너지이노베이션 / 재무팀 정민수" }
     ],
     precheck: { len: 3, eng: "Sangsang Talk", appStore: "유사앱 다수", trademark: "출원 제한적" },
     scores: { intuitive: 5, identity: 5, expand: 3, affinity: 5, practical: 3 }
@@ -1468,25 +1393,20 @@ const initialCandidates = [
   }
 ];
 
-let candidates = JSON.parse(localStorage.getItem('ssi_candidates_v7')) || initialCandidates;
+let candidates = JSON.parse(localStorage.getItem('ssi_candidates_v8')) || initialCandidates;
 let blindMode = true;
 let largeFont = false;
 let mvcFilter = 'all';
-let openEvalIds = [];
-let currentDupModalId = null;
-let favorites = JSON.parse(localStorage.getItem('ssi_favorites_v7')) || [];
-let compareList = JSON.parse(localStorage.getItem('ssi_compare_v7')) || [];
-let finalFive = JSON.parse(localStorage.getItem('ssi_final5_v7')) || [];
-let tallies = JSON.parse(localStorage.getItem('ssi_tallies_v7')) || [];
+let pickedIds = JSON.parse(localStorage.getItem('ssi_picked_v8')) || [];
+let isConfirmed = JSON.parse(localStorage.getItem('ssi_confirmed_v8')) || false;
+let activeDrawerId = null;
 let presIndex = 0;
 
 function saveState() {
-  localStorage.setItem('ssi_candidates_v7', JSON.stringify(candidates));
-  localStorage.setItem('ssi_favorites_v7', JSON.stringify(favorites));
-  localStorage.setItem('ssi_compare_v7', JSON.stringify(compareList));
-  localStorage.setItem('ssi_final5_v7', JSON.stringify(finalFive));
-  localStorage.setItem('ssi_tallies_v7', JSON.stringify(tallies));
-  updateBars();
+  localStorage.setItem('ssi_candidates_v8', JSON.stringify(candidates));
+  localStorage.setItem('ssi_picked_v8', JSON.stringify(pickedIds));
+  localStorage.setItem('ssi_confirmed_v8', JSON.stringify(isConfirmed));
+  updateSummary();
 }
 
 function unlockPage() {
@@ -1498,84 +1418,6 @@ function unlockPage() {
   }
 }
 
-function openMvcModal() { document.getElementById('mvc-modal').classList.add('active'); }
-function closeMvcModal() { document.getElementById('mvc-modal').classList.remove('active'); }
-
-function openDupModal(candId) {
-  currentDupModalId = candId;
-  document.getElementById('dup-modal-search').value = '';
-  const c = candidates.find(x => x.id === candId);
-  document.getElementById('dup-modal-title').innerText = c
-    ? `‘${c.name}’ 중복 제안 로데이터 전체 (${c.rawSubmissions.length}건)`
-    : '중복 제안 원본 로데이터';
-  renderDupModalRows();
-  document.getElementById('dup-modal').classList.add('active');
-}
-
-function openAllDupModal() {
-  currentDupModalId = null;
-  document.getElementById('dup-modal-search').value = '';
-  const totalSubs = candidates.reduce((acc, c) => acc + (c.rawSubmissions?.length || 0), 0);
-  document.getElementById('dup-modal-title').innerText = `전체 후보 중복·개별 응모 로데이터 일람 (총 ${totalSubs}건)`;
-  renderDupModalRows();
-  document.getElementById('dup-modal').classList.add('active');
-}
-
-function closeDupModal() {
-  document.getElementById('dup-modal').classList.remove('active');
-}
-
-function filterDupModalRows() {
-  renderDupModalRows();
-}
-
-function renderDupModalRows() {
-  const q = (document.getElementById('dup-modal-search').value || '').trim().toLowerCase();
-  const targetList = currentDupModalId !== null
-    ? candidates.filter(c => c.id === currentDupModalId)
-    : candidates;
-
-  let rows = [];
-  targetList.forEach(c => {
-    (c.rawSubmissions || []).forEach(sub => {
-      rows.push({
-        parentName: c.rawName,
-        submittedName: sub.submittedName,
-        slogan: sub.slogan,
-        reason: sub.reason,
-        proposer: sub.proposer
-      });
-    });
-  });
-
-  if (q) {
-    rows = rows.filter(r =>
-      r.parentName.toLowerCase().includes(q) ||
-      r.submittedName.toLowerCase().includes(q) ||
-      r.slogan.toLowerCase().includes(q) ||
-      r.reason.toLowerCase().includes(q) ||
-      (!blindMode && r.proposer.toLowerCase().includes(q))
-    );
-  }
-
-  const tbody = document.getElementById('dup-modal-tbody');
-  if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:24px; color:var(--muted);">검색 조건과 일치하는 원본 응모 내역이 없습니다.</td></tr>`;
-    return;
-  }
-
-  tbody.innerHTML = rows.map((r, i) => `
-    <tr>
-      <td>${i + 1}</td>
-      <td><span class="pill-tag pill-mint">${r.parentName}</span></td>
-      <td><b>${r.submittedName}</b></td>
-      <td style="color:var(--mint-dark); font-weight:600;">“${r.slogan}”</td>
-      <td style="font-size:0.86rem; color:var(--text); line-height:1.55;">${r.reason}</td>
-      <td><span class="${blindMode ? 'blind-masked' : ''}">${r.proposer}</span></td>
-    </tr>
-  `).join('');
-}
-
 function toggleBlindMode() {
   blindMode = !blindMode;
   const btn = document.getElementById('btn-blind');
@@ -1583,9 +1425,9 @@ function toggleBlindMode() {
   btn.classList.toggle('active', blindMode);
   btn.innerHTML = blindMode ? '🙈 블라인드 ON' : '👁️ 블라인드 OFF';
   if (pBtn) pBtn.innerHTML = blindMode ? '🙈 블라인드 ON' : '👁️ 제안자 공개중';
-  renderCardFeed();
-  renderRawTab();
-  if (document.getElementById('dup-modal').classList.contains('active')) renderDupModalRows();
+  renderRawTable();
+  renderClusterCards();
+  if (activeDrawerId) openDetailDrawer(activeDrawerId);
   if (document.getElementById('presentation-modal').classList.contains('active')) renderPresentationSlide();
 }
 
@@ -1595,264 +1437,108 @@ function toggleLargeFont() {
   document.getElementById('btn-font').classList.toggle('active', largeFont);
 }
 
-function setMvcFilter(pillar, btn) {
-  mvcFilter = pillar;
-  document.querySelectorAll('.pillar-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCardFeed();
-  renderClusterTab();
-  renderRawTab();
-}
-
-function switchTab(tabId) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === tabId));
-  if (tabId === 'tab-feed') renderCardFeed();
-  if (tabId === 'tab-cluster') renderClusterTab();
-  if (tabId === 'tab-raw') renderRawTab();
-  if (tabId === 'tab-compare') renderCompareTab();
-  if (tabId === 'tab-tally') renderTallyTab();
-  if (tabId === 'tab-export') renderExportTab();
-}
-
 function getTotalScore(c) {
   const s = c.scores;
   return (s.intuitive || 0) + (s.identity || 0) + (s.expand || 0) + (s.affinity || 0) + (s.practical || 0);
 }
 
-function getFilteredList() {
-  const q = document.getElementById('feed-search').value.trim().toLowerCase();
-  const cl = document.getElementById('feed-cluster').value;
-  const sort = document.getElementById('feed-sort').value;
-  const dup2 = document.getElementById('feed-dup2').checked;
-  const fav = document.getElementById('feed-fav').checked;
-
-  let list = candidates.filter(c => {
-    if (mvcFilter !== 'all' && c.mvcPillar !== mvcFilter) return false;
-    if (cl !== 'all' && c.subCluster !== cl) return false;
-    if (dup2 && c.dupCount < 2) return false;
-    if (fav && !favorites.includes(c.id)) return false;
-    if (q && !(c.name.toLowerCase().includes(q) || c.slogan.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q))) return false;
-    return true;
-  });
-
-  list.sort((a, b) => {
-    if (sort === 'score') return getTotalScore(b) - getTotalScore(a);
-    if (sort === 'dup') return b.dupCount - a.dupCount;
-    return a.name.localeCompare(b.name, 'ko');
-  });
-  return list;
+// STEP 1: 전체 원본 표 토글
+function toggleFullRawTable() {
+  const box = document.getElementById('full-raw-box');
+  const btn = document.getElementById('btn-raw-toggle');
+  const isHidden = box.style.display === 'none';
+  box.style.display = isHidden ? 'block' : 'none';
+  btn.innerText = isHidden ? '📊 전체 원본 응모 표 접기 ▲' : '📊 전체 원본 응모 표 펼치기 ▼';
+  if (isHidden) renderRawTable();
 }
 
-function toggleEvalDrawer(id) {
-  if (openEvalIds.includes(id)) {
-    openEvalIds = openEvalIds.filter(x => x !== id);
-  } else {
-    openEvalIds.push(id);
-  }
-  renderCardFeed();
-}
-
-function renderCardFeed() {
-  const container = document.getElementById('card-feed-list');
-  const list = getFilteredList();
-  document.getElementById('feed-count-label').innerText = `총 ${list.length}개 후보 표시 중`;
-
-  if (list.length === 0) {
-    container.innerHTML = `<div class="panel-card" style="text-align:center; color:var(--muted);">조건에 맞는 후보가 없습니다. 필터를 초기화해 주세요.</div>`;
-    return;
-  }
-
-  const criteria = [
-    { key: 'intuitive', label: '① 직관성·발음 용이성' },
-    { key: 'identity', label: '② 위닝룰·브랜드 정체성' },
-    { key: 'expand', label: '③ 2차 서비스 확장성' },
-    { key: 'affinity', label: '④ 전사 공감·호감도' },
-    { key: 'practical', label: '⑤ 상표·실용 안정성' }
-  ];
-
-  container.innerHTML = list.map((c, idx) => {
-    const isFinal = finalFive.includes(c.id);
-    const isComp = compareList.includes(c.id);
-    const isFav = favorites.includes(c.id);
-    const isEvalOpen = openEvalIds.includes(c.id);
-    const total = getTotalScore(c);
-    const appCls = c.precheck.appStore.includes('양호') ? 'ok' : 'warn';
-    const tmCls = c.precheck.trademark.includes('가능') ? 'ok' : (c.precheck.trademark.includes('불가') ? 'bad' : 'warn');
+function renderRawTable() {
+  const q = (document.getElementById('raw-filter-input')?.value || '').trim().toLowerCase();
+  const list = candidates.filter(c => !q || c.name.toLowerCase().includes(q) || c.slogan.toLowerCase().includes(q));
+  document.getElementById('raw-table-body').innerHTML = list.map(c => {
+    const isPicked = pickedIds.includes(c.id);
     const subCnt = c.rawSubmissions ? c.rawSubmissions.length : c.dupCount;
-
     return `
-      <div class="cand-card ${isFinal ? 'is-final' : (isComp ? 'is-compare' : '')}">
-        <div class="card-top">
-          <div>
-            <div class="card-num">후보 #${String(idx + 1).padStart(2, '0')}</div>
-            <div class="card-title-row">
-              <h2 class="cand-name">${c.name}</h2>
-              <span class="score-pill-lg">⭐ ${total} / 25점</span>
-            </div>
-            <div class="cand-slogan">“${c.slogan}”</div>
-            <div class="tag-row">
-              <span class="pill-tag">${c.lang} · ${c.subCluster}</span>
-              <span class="pill-tag pill-mint">위닝룰즈 [${c.mvcPillar}]</span>
-              <button type="button" class="pill-tag pill-amber" onclick="openDupModal(${c.id})" title="클릭하여 중복 제안 원본 전체 보기">
-                📑 중복 제안 ${subCnt}건 · 로데이터 보기 ↗
-              </button>
-            </div>
-          </div>
-
-          <div class="card-actions">
-            <button class="btn btn-outline btn-sm" onclick="toggleFav(${c.id})">${isFav ? '❤️ 즐겨찾기됨' : '🤍 즐겨찾기'}</button>
-            <button class="btn ${isComp ? 'btn-amber' : 'btn-outline'} btn-sm" onclick="toggleCompare(${c.id})">${isComp ? '⚖️ 비교중' : '+ 임시비교'}</button>
-            <button class="btn ${isFinal ? 'btn-mint-soft' : 'btn-mint'}" style="padding:9px 18px; border-radius:999px;" onclick="toggleFinalFive(${c.id})">
-              ${isFinal ? '✅ 최종 5선 선정됨' : '⭐ 최종 5선 선택'}
-            </button>
-          </div>
-        </div>
-
-        <div class="card-body-grid">
-          <div>
-            <div class="desc-text">${c.desc}</div>
-
-            <div class="winning-strip">
-              <div class="winning-strip-head">🧭 상상인 위닝룰즈 9 연계 · [${c.mvcPillar}]</div>
-              <div class="winning-strip-quote">“${c.winningRule}”</div>
-              <div class="winning-strip-why">${c.winningWhy}</div>
-            </div>
-
-            <div class="precheck-inline">
-              <span>📏 <b>${c.precheck.len}자</b> (${c.precheck.eng})</span>
-              <span>·</span>
-              <span>📱 앱스토어: <b class="${appCls}">${c.precheck.appStore}</b></span>
-              <span>·</span>
-              <span>™️ 상표권: <b class="${tmCls}">${c.precheck.trademark}</b></span>
-              <span>·</span>
-              <span>👤 제안자: <span class="${blindMode ? 'blind-masked' : ''}">${c.proposer}</span></span>
-            </div>
-          </div>
-
-          <div class="mini-phone">
-            <div class="mini-screen">
-              <div class="mini-app-head">
-                <div class="mini-app-icon">${c.rawName}</div>
-                <div>
-                  <div style="font-weight:800; font-size:1rem; color:var(--charcoal);">${c.rawName}</div>
-                  <div style="font-size:0.74rem; color:var(--muted);">상상인그룹 임직원 통합앱</div>
-                </div>
-              </div>
-              <div class="mini-push">
-                <div style="font-size:0.7rem; color:var(--muted); font-weight:700;">🔔 푸시 알림</div>
-                <b>[${c.rawName}]</b> 오늘의 먹거리를 신청하세요!
-              </div>
-              <div class="mini-push" style="border-left-color:var(--charcoal); margin-bottom:0;">
-                <div style="font-size:0.7rem; color:var(--muted); font-weight:700;">🌰 사내 공지</div>
-                <b>${c.rawName}</b>에서 동료에게 칭찬 도토리를 보내보세요!
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-footer-eval">
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-            <button class="btn btn-outline btn-sm" onclick="openDupModal(${c.id})">📂 중복제안 전체 로데이터 (${subCnt}건)</button>
-            <span style="font-size:0.83rem; color:var(--muted);">동일·유사 제안을 올린 임직원들의 개별 원문을 모두 확인할 수 있습니다.</span>
-          </div>
-          <button class="btn btn-outline btn-sm" onclick="toggleEvalDrawer(${c.id})">
-            ${isEvalOpen ? '▲ 세부 점수판 접기' : '▼ 5대 기준 세부 점수 입력'}
+      <tr style="cursor:pointer; ${isPicked ? 'background:var(--mint-soft);' : ''}" onclick="openDetailDrawer(${c.id})">
+        <td>${c.id}</td>
+        <td><b>${c.name}</b></td>
+        <td>${c.slogan}</td>
+        <td><span class="pill-tag">${c.subCluster}</span></td>
+        <td><span class="pill-tag pill-amber">중복 ${subCnt}건 ↗</span></td>
+        <td style="font-size:0.8rem;">앱: ${c.precheck.appStore} / 상표: ${c.precheck.trademark}</td>
+        <td><span class="${blindMode ? 'blind-masked' : ''}">${c.proposer}</span></td>
+        <td><b>${getTotalScore(c)}점</b></td>
+        <td onclick="event.stopPropagation()">
+          <button class="btn ${isPicked ? 'btn-mint-soft' : 'btn-mint'} btn-sm" onclick="togglePick(${c.id})">
+            ${isPicked ? '✅ 담김' : '+ 담기'}
           </button>
-        </div>
-
-        <div class="eval-drawer ${isEvalOpen ? 'open' : ''}">
-          <div class="eval-grid">
-            ${criteria.map(cr => `
-              <div class="eval-item">
-                <span style="font-size:0.86rem; font-weight:700; color:var(--charcoal);">${cr.label}</span>
-                <div class="score-btns">
-                  ${[1,2,3,4,5].map(n => `
-                    <button class="s-btn ${c.scores[cr.key] === n ? 'active' : ''}" onclick="setScore(${c.id}, '${cr.key}', ${n})">${n}</button>
-                  `).join('')}
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
+        </td>
+      </tr>
     `;
   }).join('');
 }
 
-function setScore(id, key, val) {
-  const c = candidates.find(x => x.id === id);
-  if (c) { c.scores[key] = val; saveState(); renderCardFeed(); }
+// STEP 3: 군집별 후보 간략 카드 렌더링
+function setMvcFilter(pillar, btn) {
+  mvcFilter = pillar;
+  document.querySelectorAll('.pillar-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderClusterCards();
 }
 
-function toggleFav(id) {
-  favorites = favorites.includes(id) ? favorites.filter(x => x !== id) : [...favorites, id];
-  saveState(); renderCardFeed();
-}
+function renderClusterCards() {
+  const q = (document.getElementById('step3-search')?.value || '').trim().toLowerCase();
+  const dup2 = document.getElementById('step3-dup2')?.checked || false;
+  const clusters = [
+    { key: "상상인 결합", title: "군집 1. 상상인·그룹명 결합형", desc: "그룹명 '상상/상상인'을 직접 포함해 통합 플랫폼의 정체성과 소속감을 직관적으로 전달" },
+    { key: "명사형", title: "군집 2-A. 직관적 명사·공간형", desc: "터, 마루, 톡 등 친숙한 명사를 활용해 누구나 편히 모이는 사내 커뮤니티를 표현" },
+    { key: "동사형", title: "군집 2-B. 행동·기능 동사형", desc: "모아, 플레이 등 앱에서 일어나는 구체적 참여 경험과 실행력을 강조" },
+    { key: "영문형", title: "군집 2-C. 영문·약어·글로벌형", desc: "SSI, HUB 등 영문 이니셜과 플랫폼 용어로 2차 업무 시스템 확장성을 부각" },
+    { key: "위닝룰 특화", title: "군집 3. 위닝룰·도토리 문화 특화형", desc: "그룹 핵심 가치인 '위닝룰즈'와 대표 문화 '칭찬도토리'를 전면에 내세운 유형" }
+  ];
 
-function toggleCompare(id) {
-  if (compareList.includes(id)) {
-    compareList = compareList.filter(x => x !== id);
-  } else {
-    if (compareList.length >= 3) { alert('임시 비교함은 최대 3개까지 가능합니다.'); return; }
-    compareList.push(id);
-  }
-  saveState(); renderCardFeed();
-}
+  const container = document.getElementById('cluster-sections-container');
+  container.innerHTML = clusters.map(cl => {
+    const items = candidates.filter(c => {
+      if (c.subCluster !== cl.key) return false;
+      if (mvcFilter !== 'all' && c.mvcPillar !== mvcFilter) return false;
+      if (dup2 && c.dupCount < 2) return false;
+      if (q && !(c.name.toLowerCase().includes(q) || c.slogan.toLowerCase().includes(q))) return false;
+      return true;
+    }).sort((a, b) => getTotalScore(b) - getTotalScore(a));
 
-function clearCompare() { compareList = []; saveState(); renderCompareTab(); renderCardFeed(); }
+    if (items.length === 0) return '';
 
-function toggleFinalFive(id) {
-  if (finalFive.includes(id)) {
-    finalFive = finalFive.filter(x => x !== id);
-  } else {
-    if (finalFive.length >= 5) { alert('최종 5선은 최대 5개까지만 선택 가능합니다.'); return; }
-    finalFive.push(id);
-  }
-  saveState(); renderCardFeed(); renderRawTab(); renderClusterTab();
-  if (document.getElementById('presentation-modal').classList.contains('active')) renderPresentationSlide();
-}
-
-function updateBars() {
-  document.getElementById('hero-final-count').innerText = `${finalFive.length} / 5선`;
-  document.getElementById('bar-count').innerText = finalFive.length;
-  document.getElementById('bar-comp-count').innerText = compareList.length;
-  const pills = document.getElementById('bar-pills');
-  if (finalFive.length === 0) {
-    pills.innerHTML = `<span style="color:#94A3B8; font-size:0.85rem;">후보 카드 우측 상단의 [최종 5선 선택]을 눌러주세요.</span>`;
-  } else {
-    pills.innerHTML = finalFive.map(id => {
-      const c = candidates.find(x => x.id === id);
-      return `<span class="sel-pill">${c ? c.rawName : id} <button onclick="toggleFinalFive(${id})">✕</button></span>`;
-    }).join('');
-  }
-}
-
-function renderClusterTab() {
-  const clusters = ["상상인 결합", "명사형", "동사형", "영문형", "위닝룰 특화"];
-  const box = document.getElementById('cluster-container');
-  box.innerHTML = clusters.map(cl => {
-    const items = candidates.filter(c => c.subCluster === cl && (mvcFilter === 'all' || c.mvcPillar === mvcFilter));
     return `
-      <div class="panel-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:10px;">
-          <h3 style="color:var(--charcoal);">🧩 ${cl} <span class="pill-tag">${items.length}개</span></h3>
+      <div class="cluster-block">
+        <div class="cluster-head">
+          <div>
+            <h3>🧩 ${cl.title} <span class="pill-tag">${items.length}개</span></h3>
+            <p style="font-size:0.84rem; color:var(--muted); margin-top:2px;">${cl.desc}</p>
+          </div>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:14px;">
+        <div class="mini-card-grid">
           ${items.map(c => {
-            const isFinal = finalFive.includes(c.id);
+            const isPicked = pickedIds.includes(c.id);
             const subCnt = c.rawSubmissions ? c.rawSubmissions.length : c.dupCount;
             return `
-              <div style="border:1.5px solid ${isFinal?'var(--mint)':'var(--border)'}; border-radius:14px; padding:16px; background:${isFinal?'var(--mint-soft)':'#F8FAFC'};">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <strong style="color:var(--charcoal); font-size:1.08rem;">${c.rawName}</strong>
-                  <span class="score-pill-lg" style="font-size:0.78rem; padding:2px 9px;">${getTotalScore(c)}점</span>
+              <div class="mini-cand-card ${isPicked ? 'picked' : ''}" onclick="openDetailDrawer(${c.id})">
+                <div>
+                  <div class="mini-cand-top">
+                    <div class="mini-cand-name">${c.name}</div>
+                    <span class="score-badge">⭐ ${getTotalScore(c)}점</span>
+                  </div>
+                  <div class="mini-cand-slogan">“${c.slogan}”</div>
+                  <div class="mini-cand-tags">
+                    <span class="pill-tag pill-mint">${c.mvcPillar}</span>
+                    <span class="pill-tag pill-amber">중복 ${subCnt}건 ↗</span>
+                    <span class="pill-tag">${c.precheck.len}자</span>
+                  </div>
                 </div>
-                <div style="font-size:0.86rem; color:var(--text-sub); margin-top:4px;">${c.slogan}</div>
-                <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center; gap:6px;">
-                  <button class="pill-tag pill-amber" style="font-size:0.74rem;" onclick="openDupModal(${c.id})">중복 ${subCnt}건 ↗</button>
-                  <button class="btn ${isFinal?'btn-mint-soft':'btn-mint'} btn-sm" onclick="toggleFinalFive(${c.id})">
-                    ${isFinal ? '✅ 5선됨' : '+ 5선 선택'}
+                <div class="mini-cand-footer" onclick="event.stopPropagation()">
+                  <button class="btn btn-outline btn-sm" onclick="openDetailDrawer(${c.id})">상세·로데이터</button>
+                  <button class="btn ${isPicked ? 'btn-mint-soft' : 'btn-mint'} btn-sm" onclick="togglePick(${c.id})">
+                    ${isPicked ? '✅ 비교함 담김' : '+ 비교함 담기'}
                   </button>
                 </div>
               </div>
@@ -1864,172 +1550,293 @@ function renderClusterTab() {
   }).join('');
 }
 
-function renderRawTab() {
-  const q = (document.getElementById('raw-search')?.value || '').trim().toLowerCase();
-  const list = candidates.filter(c => {
-    if (mvcFilter !== 'all' && c.mvcPillar !== mvcFilter) return false;
-    if (q && !(c.name.toLowerCase().includes(q) || c.slogan.toLowerCase().includes(q))) return false;
-    return true;
-  });
-
-  document.getElementById('raw-tbody').innerHTML = list.map(c => {
-    const isFinal = finalFive.includes(c.id);
-    const subCnt = c.rawSubmissions ? c.rawSubmissions.length : c.dupCount;
-    return `
-      <tr style="${isFinal ? 'background:var(--mint-soft);' : ''}">
-        <td>${c.id}</td>
-        <td><b>${c.name}</b></td>
-        <td>${c.slogan}</td>
-        <td><span class="pill-tag">${c.subCluster}</span></td>
-        <td><span class="pill-tag pill-mint">${c.mvcPillar}</span></td>
-        <td>
-          <button class="btn btn-outline btn-sm" onclick="openDupModal(${c.id})">
-            📑 <b>${subCnt}건</b> 로데이터 ↗
-          </button>
-        </td>
-        <td style="font-size:0.8rem;">앱: ${c.precheck.appStore} / 상표: ${c.precheck.trademark}</td>
-        <td><span class="${blindMode ? 'blind-masked' : ''}">${c.proposer}</span></td>
-        <td><b>${getTotalScore(c)}점</b></td>
-        <td>
-          <button class="btn ${isFinal ? 'btn-mint' : 'btn-outline'} btn-sm" onclick="toggleFinalFive(${c.id})">
-            ${isFinal ? '✅ 5선됨' : '+ 선택'}
-          </button>
-        </td>
-      </tr>
-    `;
-  }).join('');
+// 후보 담기/빼기 (최대 5개)
+function togglePick(id) {
+  isConfirmed = false;
+  if (pickedIds.includes(id)) {
+    pickedIds = pickedIds.filter(x => x !== id);
+  } else {
+    if (pickedIds.length >= 5) {
+      alert('비교함 및 최종 후보군은 최대 5개까지 담을 수 있습니다. 기존 후보를 뺀 후 담아주세요.');
+      return;
+    }
+    pickedIds.push(id);
+  }
+  saveState();
+  renderClusterCards();
+  renderCompareBoard();
+  renderStep5();
+  renderRawTable();
+  if (activeDrawerId === id) openDetailDrawer(id);
+  if (document.getElementById('presentation-modal').classList.contains('active')) renderPresentationSlide();
 }
 
-function renderCompareTab() {
-  const grid = document.getElementById('compare-grid');
-  const ids = compareList.length > 0 ? compareList : finalFive.slice(0, 3);
-  if (ids.length === 0) {
-    grid.innerHTML = `<div style="padding:30px; text-align:center; color:var(--muted);">후보 카드에서 <b>[+ 임시비교]</b>를 눌러 2~3개 후보를 담아주세요.</div>`;
-    return;
-  }
-  const items = ids.map(id => candidates.find(c => c.id === id)).filter(Boolean);
-  grid.innerHTML = items.map(c => `
-    <div style="border:1px solid var(--border); border-radius:16px; padding:20px; background:#F8FAFC;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-        <span class="score-pill-lg" style="font-size:0.82rem;">총점 ${getTotalScore(c)} / 25점</span>
-        <button class="btn ${finalFive.includes(c.id)?'btn-mint-soft':'btn-mint'} btn-sm" onclick="toggleFinalFive(${c.id}); renderCompareTab();">
-          ${finalFive.includes(c.id) ? '✅ 5선 확정됨' : '최종 5선 선택'}
+function autoPickTop5() {
+  isConfirmed = false;
+  pickedIds = [...candidates].sort((a, b) => getTotalScore(b) - getTotalScore(a)).slice(0, 5).map(c => c.id);
+  saveState();
+  renderClusterCards();
+  renderCompareBoard();
+  renderStep5();
+  document.getElementById('step-4').scrollIntoView({ behavior: 'smooth' });
+}
+
+function clearPicked() {
+  isConfirmed = false;
+  pickedIds = [];
+  saveState();
+  renderClusterCards();
+  renderCompareBoard();
+  renderStep5();
+}
+
+// 상세 & 중복 로데이터 우측 서랍(Drawer) 열기
+function openDetailDrawer(id) {
+  activeDrawerId = id;
+  const c = candidates.find(x => x.id === id);
+  if (!c) return;
+
+  const isPicked = pickedIds.includes(c.id);
+  const total = getTotalScore(c);
+  const subs = c.rawSubmissions || [];
+  const criteria = [
+    { key: 'intuitive', label: '① 직관성·발음 용이성' },
+    { key: 'identity', label: '② 위닝룰·브랜드 정체성' },
+    { key: 'expand', label: '③ 2차 서비스 확장성' },
+    { key: 'affinity', label: '④ 전사 공감·호감도' },
+    { key: 'practical', label: '⑤ 상표·실용 안정성' }
+  ];
+
+  const appCls = c.precheck.appStore.includes('양호') ? 'var(--mint-dark)' : 'var(--amber)';
+  const tmCls = c.precheck.trademark.includes('가능') ? 'var(--mint-dark)' : (c.precheck.trademark.includes('불가') ? 'var(--danger)' : 'var(--amber)');
+
+  document.getElementById('detail-drawer-content').innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding-bottom:18px; border-bottom:1px solid var(--border); margin-bottom:20px;">
+      <div>
+        <span class="pill-tag pill-mint" style="margin-bottom:6px; display:inline-block;">${c.subCluster} · 위닝룰즈 [${c.mvcPillar}]</span>
+        <h2 style="font-size:1.75rem; font-weight:900; color:var(--charcoal);">${c.name}</h2>
+        <p style="font-size:1.05rem; font-weight:700; color:var(--mint-dark); margin-top:4px;">“${c.slogan}”</p>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn ${isPicked ? 'btn-mint-soft' : 'btn-mint'}" onclick="togglePick(${c.id})">
+          ${isPicked ? '✅ 비교함 담김' : '+ 비교함 담기'}
         </button>
-      </div>
-      <h3 style="color:var(--charcoal); font-size:1.3rem;">${c.name}</h3>
-      <p style="color:var(--mint-dark); font-weight:700; font-size:0.9rem; margin:4px 0 12px;">“${c.slogan}”</p>
-      <div class="winning-strip" style="padding:10px 12px; margin-bottom:14px;">
-        <div class="winning-strip-head">위닝룰즈 [${c.mvcPillar}]</div>
-        <div style="font-size:0.84rem; color:var(--text-sub);">${c.winningRule}</div>
-      </div>
-      <div class="mini-phone">
-        <div class="mini-screen">
-          <div class="mini-app-head">
-            <div class="mini-app-icon">${c.rawName}</div>
-            <div><b>${c.rawName}</b><div style="font-size:0.75rem; color:var(--muted);">상상인그룹 통합앱</div></div>
-          </div>
-          <div class="mini-push"><b>[${c.rawName}]</b> 오늘의 먹거리를 신청하세요!</div>
-        </div>
+        <button class="btn btn-outline btn-sm" onclick="closeDetailDrawer()">✕ 닫기</button>
       </div>
     </div>
-  `).join('');
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:6px;">네이밍 기획 의도 및 핵심 의미</div>
+      <div style="background:#F8FAFC; padding:16px; border-radius:12px; border:1px solid var(--border); font-size:0.95rem; line-height:1.65;">${c.desc}</div>
+    </div>
+
+    <div style="background:var(--mint-soft); border:1px solid var(--mint-border); border-left:4px solid var(--mint); padding:14px 16px; border-radius:12px; margin-bottom:20px;">
+      <div style="font-size:0.8rem; font-weight:800; color:var(--mint-dark);">🧭 상상인 위닝룰즈 9 연계 · [${c.mvcPillar}]</div>
+      <div style="font-weight:800; color:var(--charcoal); margin:2px 0;">“${c.winningRule}”</div>
+      <div style="font-size:0.86rem; color:var(--text-sub);">${c.winningWhy}</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:22px; font-size:0.86rem;">
+      <div style="background:#F8FAFC; padding:10px 14px; border-radius:10px; border:1px solid var(--border);">
+        <span style="color:var(--muted); display:block; font-size:0.75rem;">글자 수 / 영문 표기</span>
+        <b>${c.precheck.len}자 (${c.precheck.eng})</b>
+      </div>
+      <div style="background:#F8FAFC; padding:10px 14px; border-radius:10px; border:1px solid var(--border);">
+        <span style="color:var(--muted); display:block; font-size:0.75rem;">앱스토어 / 상표권 검토</span>
+        <b style="color:${appCls};">${c.precheck.appStore}</b> · <b style="color:${tmCls};">${c.precheck.trademark}</b>
+      </div>
+    </div>
+
+    <!-- 5대 기준 점수 입력 -->
+    <div style="background:#F8FAFC; padding:16px; border-radius:14px; border:1px solid var(--border); margin-bottom:24px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong style="color:var(--charcoal);">⭐ 5대 심의 기준 평가 (총점 ${total} / 25점)</strong>
+        <span style="font-size:0.76rem; color:var(--muted);">점수 클릭 시 즉시 반영</span>
+      </div>
+      ${criteria.map(cr => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid #E2E8F0;">
+          <span style="font-size:0.86rem; font-weight:600;">${cr.label}</span>
+          <div style="display:flex; gap:4px;">
+            ${[1,2,3,4,5].map(n => `
+              <button class="s-btn ${c.scores[cr.key] === n ? 'active' : ''}" onclick="setScore(${c.id}, '${cr.key}', ${n})">${n}</button>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <!-- 중복 제안 전체 로데이터 테이블 -->
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong style="color:var(--charcoal); font-size:1rem;">📑 중복 제안 개별 응모 로데이터 (${subs.length}건)</strong>
+        <span style="font-size:0.78rem; color:var(--muted);">블라인드 모드 연동됨</span>
+      </div>
+      <div class="table-wrap" style="border:1px solid var(--border); border-radius:12px;">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>응모 표기</th>
+              <th>슬로건 및 제안 사유 (원문)</th>
+              <th>제안자</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${subs.map((s, idx) => `
+              <tr>
+                <td>${idx + 1}</td>
+                <td><b>${s.submittedName}</b></td>
+                <td>
+                  <div style="color:var(--mint-dark); font-weight:700; font-size:0.84rem;">“${s.slogan}”</div>
+                  <div style="font-size:0.82rem; color:var(--text-sub); margin-top:2px;">${s.reason}</div>
+                </td>
+                <td><span class="${blindMode ? 'blind-masked' : ''}">${s.proposer}</span></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('detail-drawer').classList.add('active');
 }
 
-function renderTallyTab() {
-  const top5 = [...candidates].sort((a, b) => getTotalScore(b) - getTotalScore(a)).slice(0, 5);
-  document.getElementById('auto-top5-box').innerHTML = top5.map((c, i) => `
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid var(--border);">
-      <div><b>${i+1}위. ${c.name}</b> <span class="pill-tag pill-mint" style="font-size:0.75rem;">${c.mvcPillar}</span></div>
-      <span class="score-pill-lg" style="font-size:0.8rem; padding:2px 10px;">${getTotalScore(c)} / 25점</span>
-    </div>
-  `).join('');
+function closeDetailDrawer() {
+  activeDrawerId = null;
+  document.getElementById('detail-drawer').classList.remove('active');
+}
 
-  const res = document.getElementById('tally-result');
-  if (tallies.length === 0) {
-    res.innerHTML = `<p style="font-size:0.84rem; color:var(--muted);">합산된 개별 임원 투표가 아직 없습니다.</p>`;
+function setScore(id, key, val) {
+  const c = candidates.find(x => x.id === id);
+  if (c) {
+    c.scores[key] = val;
+    saveState();
+    openDetailDrawer(id);
+    renderClusterCards();
+    renderCompareBoard();
+    renderStep5();
+  }
+}
+
+// STEP 4: 선택 후보 나란히 비교 보드 렌더링
+function renderCompareBoard() {
+  const container = document.getElementById('compare-board-container');
+  if (pickedIds.length === 0) {
+    container.innerHTML = `
+      <div class="panel-card" style="text-align:center; padding:42px 20px; color:var(--muted);">
+        <div style="font-size:1.8rem; margin-bottom:8px;">⚖️</div>
+        <strong style="color:var(--charcoal); font-size:1.05rem;">아직 비교함에 담긴 후보가 없습니다.</strong>
+        <p style="font-size:0.88rem; margin-top:4px;">위 <b>STEP 3. 군집별 후보 탐색</b>에서 후보 카드의 <b>[+ 비교함 담기]</b> 버튼을 누르면 이곳에 나란히 정렬됩니다.</p>
+      </div>
+    `;
     return;
   }
-  const counts = {};
-  tallies.forEach(t => t.picks.forEach(id => { counts[id] = (counts[id] || 0) + 1; }));
-  const ranked = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  res.innerHTML = `
-    <table>
-      <thead><tr><th>순위</th><th>후보</th><th>득표</th><th>선택 임원</th></tr></thead>
-      <tbody>
-        ${ranked.map(([id, cnt], idx) => {
-          const c = candidates.find(x => x.id === Number(id));
-          const who = tallies.filter(t => t.picks.includes(Number(id))).map(t => t.voter).join(', ');
-          return `<tr><td>${idx+1}</td><td><b>${c ? c.rawName : id}</b></td><td><b>${cnt}표</b></td><td>${who}</td></tr>`;
-        }).join('')}
-      </tbody>
-    </table>
+
+  const items = pickedIds.map(id => candidates.find(c => c.id === id)).filter(Boolean);
+  container.innerHTML = `
+    <div class="compare-board-grid">
+      ${items.map((c, idx) => {
+        const subCnt = c.rawSubmissions ? c.rawSubmissions.length : c.dupCount;
+        const appCls = c.precheck.appStore.includes('양호') ? 'var(--mint-dark)' : 'var(--amber)';
+        const tmCls = c.precheck.trademark.includes('가능') ? 'var(--mint-dark)' : (c.precheck.trademark.includes('불가') ? 'var(--danger)' : 'var(--amber)');
+        return `
+          <div class="compare-col-card">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span class="pill-tag pill-mint">후보 #${idx + 1} · ⭐ ${getTotalScore(c)} / 25점</span>
+                <button class="btn btn-outline btn-sm" onclick="togglePick(${c.id})">✕ 제외</button>
+              </div>
+              <h3 style="font-size:1.4rem; font-weight:900; color:var(--charcoal);">${c.name}</h3>
+              <p style="font-size:0.9rem; font-weight:700; color:var(--mint-dark); margin:4px 0 10px;">“${c.slogan}”</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.55; margin-bottom:12px;">${c.desc}</p>
+
+              <!-- 실제 앱 적용 미리보기 -->
+              <div class="phone-mock">
+                <div class="phone-inner">
+                  <div class="app-row">
+                    <div class="app-sq">${c.rawName}</div>
+                    <div>
+                      <div style="font-weight:800; font-size:0.95rem; color:var(--charcoal);">${c.rawName}</div>
+                      <div style="font-size:0.72rem; color:var(--muted);">상상인그룹 임직원 통합앱</div>
+                    </div>
+                  </div>
+                  <div class="push-bubble">
+                    <b>[${c.rawName}]</b> 오늘의 먹거리를 신청하고 칭찬 도토리를 보내보세요!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size:0.82rem; background:#F8FAFC; padding:12px; border-radius:10px; border:1px solid var(--border); margin-top:8px;">
+              <div style="margin-bottom:4px;">• <b>위닝룰즈:</b> [${c.mvcPillar}] ${c.winningRule}</div>
+              <div style="margin-bottom:4px;">• <b>중복 제안:</b> ${subCnt}건 <a href="javascript:void(0)" onclick="openDetailDrawer(${c.id})" style="color:var(--mint-dark); font-weight:700;">(원문보기)</a></div>
+              <div>• <b>사전검토:</b> 앱 <b style="color:${appCls};">${c.precheck.appStore}</b> / 상표 <b style="color:${tmCls};">${c.precheck.trademark}</b></div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
   `;
 }
 
-function applyAutoTop5() {
-  finalFive = [...candidates].sort((a, b) => getTotalScore(b) - getTotalScore(a)).slice(0, 5).map(c => c.id);
-  saveState(); renderCardFeed(); alert('심의 점수 상위 5개가 최종 5선으로 적용되었습니다.');
-}
-
-function exportVoteCode() {
-  if (finalFive.length === 0) { alert('먼저 최종 5선을 선택해 주세요.'); return; }
-  const voter = document.getElementById('voter-name').value.trim() || '임원(미기재)';
-  const code = JSON.stringify({ voter, picks: finalFive });
-  const box = document.getElementById('vote-json-box');
-  box.value = code; box.select(); navigator.clipboard?.writeText(code);
-  alert(`${voter}님의 선택 코드가 복사되었습니다.`);
-}
-
-function importVoteCode() {
-  try {
-    const data = JSON.parse(document.getElementById('vote-json-box').value.trim());
-    if (!data.voter || !Array.isArray(data.picks)) throw new Error();
-    tallies = tallies.filter(t => t.voter !== data.voter);
-    tallies.push(data); saveState(); renderTallyTab();
-  } catch (e) { alert('올바른 코드 형식이 아닙니다.'); }
-}
-
-function resetTallies() { if (confirm('초기화할까요?')) { tallies = []; saveState(); renderTallyTab(); } }
-
-function renderExportTab() {
-  const body = document.getElementById('export-body');
-  const printArea = document.getElementById('print-area');
-  if (finalFive.length === 0) {
-    body.innerHTML = `<div style="padding:30px; text-align:center; color:var(--muted);">먼저 최종 5선을 선택해 주세요.</div>`;
+// STEP 5: 후보 확정 & 자료 생성
+function confirmFinalSelection() {
+  if (pickedIds.length === 0) {
+    alert('먼저 STEP 3에서 최소 1개 이상의 후보를 담아주세요.');
     return;
   }
-  const picked = finalFive.map(id => candidates.find(c => c.id === id)).filter(Boolean);
+  isConfirmed = true;
+  saveState();
+  renderStep5();
+}
+
+function renderStep5() {
+  const box = document.getElementById('step5-container');
+  if (pickedIds.length === 0) {
+    box.innerHTML = `<div style="text-align:center; padding:24px; color:var(--muted);">STEP 3~4에서 후보를 선택하시면 이곳에서 최종 확정 및 2차 투표 안내문을 생성할 수 있습니다.</div>`;
+    return;
+  }
+
+  const picked = pickedIds.map(id => candidates.find(c => c.id === id)).filter(Boolean);
   const draft = `[전사 공지] 상상인그룹 통합앱 네이밍 공모전 결선 투표 안내
 
 안녕하세요, 상상인그룹 PR팀입니다.
 "직급에 상관없이 전원이 의사결정에 참여해야 한다"는 상상인 위닝룰즈 정신에 따라,
-임원 심의를 통과한 최종 5선 후보를 대상으로 전 임직원 결선 투표를 진행합니다!
+임원 심의를 통과한 최종 ${picked.length}선 후보를 대상으로 전 임직원 결선 투표를 진행합니다!
 
-■ 결선 투표 후보 (최종 5선)
+■ 결선 투표 후보 (최종 ${picked.length}선)
 ${picked.map((c, i) => `${i+1}. ${c.name} : “${c.slogan}”\n   - 연계 위닝룰: [${c.mvcPillar}] ${c.winningRule}\n   - 의미: ${c.desc}`).join('\n\n')}
 
 ■ 투표 참여 안내
 - 대상: 상상인그룹 전 계열사 임직원 전원
 - 방법: 사내 공지 내 투표 링크 접속 후 1인 1표 선택`;
 
-  body.innerHTML = `
+  box.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:14px; border-bottom:1px solid var(--border); margin-bottom:18px;">
+      <div>
+        <span class="pill-tag ${isConfirmed ? 'pill-mint' : 'pill-amber'}">${isConfirmed ? '✅ 최종 선정 확정 완료' : '⏳ 확정 대기 중 (우측 상단 [최종 5선 확정하기] 클릭)'}</span>
+        <strong style="margin-left:8px; color:var(--charcoal); font-size:1.05rem;">선정 후보: ${picked.map(c => c.rawName).join(', ')}</strong>
+      </div>
+    </div>
+
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
       <div>
-        <h3 style="color:var(--charcoal); margin-bottom:8px;">📢 2차 전 임직원 결선 투표 안내문 초안</h3>
-        <textarea id="notice-area" rows="15" style="width:100%; padding:14px; border:1px solid var(--border); border-radius:12px; line-height:1.6;">${draft}</textarea>
-        <button class="btn btn-mint" style="margin-top:8px;" onclick="navigator.clipboard?.writeText(document.getElementById('notice-area').value); alert('복사되었습니다.');">📋 안내문 복사</button>
+        <h3 style="color:var(--charcoal); font-size:1rem; margin-bottom:8px;">📢 2차 전 임직원 결선 투표 안내문 초안</h3>
+        <textarea id="final-notice-box" rows="13" style="width:100%; padding:14px; border:1px solid var(--border); border-radius:12px; line-height:1.6;">${draft}</textarea>
+        <button class="btn btn-mint btn-sm" style="margin-top:8px;" onclick="navigator.clipboard?.writeText(document.getElementById('final-notice-box').value); alert('공지문 초안이 복사되었습니다.');">📋 공지문 복사</button>
       </div>
       <div>
-        <h3 style="color:var(--charcoal); margin-bottom:8px;">🃏 결선 후보 요약 카드</h3>
+        <h3 style="color:var(--charcoal); font-size:1rem; margin-bottom:8px;">🃏 결선 후보 요약 카드</h3>
         <div style="display:flex; flex-direction:column; gap:10px;">
           ${picked.map((c, i) => `
-            <div style="border:1px solid var(--border); border-left:5px solid var(--mint); padding:14px 16px; border-radius:12px; background:#F8FAFC;">
+            <div style="border:1px solid var(--border); border-left:5px solid var(--mint); padding:12px 16px; border-radius:12px; background:#F8FAFC;">
               <div style="display:flex; justify-content:space-between;">
                 <strong>후보 ${i+1}. ${c.name}</strong>
-                <span class="pill-tag pill-mint">${c.mvcPillar}</span>
+                <span class="pill-tag pill-mint">${c.mvcPillar} · ${getTotalScore(c)}점</span>
               </div>
-              <div style="color:var(--mint-dark); font-weight:700; font-size:0.88rem; margin:3px 0;">“${c.slogan}”</div>
-              <div style="font-size:0.84rem; color:var(--text-sub);">${c.desc}</div>
+              <div style="color:var(--mint-dark); font-weight:700; font-size:0.86rem; margin:3px 0;">“${c.slogan}”</div>
+              <div style="font-size:0.82rem; color:var(--text-sub);">${c.desc}</div>
             </div>
           `).join('')}
         </div>
@@ -2037,9 +1844,9 @@ ${picked.map((c, i) => `${i+1}. ${c.name} : “${c.slogan}”\n   - 연계 위�
     </div>
   `;
 
-  printArea.innerHTML = `
+  document.getElementById('print-area').innerHTML = `
     <h1 style="color:#1E293B; border-bottom:3px solid #00A499; padding-bottom:8px; margin-bottom:14px;">상상인그룹 통합앱 네이밍 공모전 심의 결과 보고</h1>
-    <p style="margin-bottom:14px; color:#475569;">심의 기준: 상상인 위닝룰즈 9 (도전·연결·존중) | 최종 5선 선정 결과</p>
+    <p style="margin-bottom:14px; color:#475569;">심의 기준: 상상인 위닝룰즈 9 (도전·연결·존중) | 최종 선정 결과</p>
     <table style="width:100%; border-collapse:collapse;">
       <thead><tr style="background:#E6F6F5;"><th style="border:1px solid #CBD5E1; padding:8px;">No</th><th style="border:1px solid #CBD5E1; padding:8px;">후보명</th><th style="border:1px solid #CBD5E1; padding:8px;">위닝룰즈 연계</th><th style="border:1px solid #CBD5E1; padding:8px;">슬로건 및 의미</th><th style="border:1px solid #CBD5E1; padding:8px;">심의점수</th></tr></thead>
       <tbody>
@@ -2057,6 +1864,38 @@ ${picked.map((c, i) => `${i+1}. ${c.name} : “${c.slogan}”\n   - 연계 위�
   `;
 }
 
+function updateSummary() {
+  document.getElementById('kpi-picked-val').innerText = `${pickedIds.length} / 5선 선정`;
+  document.getElementById('nav-pick-cnt').innerText = pickedIds.length;
+  document.getElementById('bar-count').innerText = pickedIds.length;
+
+  const pills = document.getElementById('bar-pills');
+  if (pickedIds.length === 0) {
+    pills.innerHTML = `<span style="color:#94A3B8; font-size:0.84rem;">STEP 3에서 후보를 담아주세요.</span>`;
+  } else {
+    pills.innerHTML = pickedIds.map(id => {
+      const c = candidates.find(x => x.id === id);
+      return `<span class="sel-pill">${c ? c.rawName : id} <button onclick="togglePick(${id})">✕</button></span>`;
+    }).join('');
+  }
+}
+
+// 스크롤 위치에 따른 상단 스텝 네비게이션 하이라이트
+window.addEventListener('scroll', () => {
+  const steps = ['step-1', 'step-2', 'step-3', 'step-4', 'step-5'];
+  let current = 'step-1';
+  for (const id of steps) {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 160) {
+      current = id;
+    }
+  }
+  steps.forEach(id => {
+    document.getElementById('nav-' + id)?.classList.toggle('active', id === current);
+  });
+});
+
+// 발표 모드
 function openPresentation() {
   presIndex = 0;
   document.getElementById('presentation-modal').classList.add('active');
@@ -2064,15 +1903,13 @@ function openPresentation() {
 }
 function closePresentation() { document.getElementById('presentation-modal').classList.remove('active'); }
 function navPresentation(dir) {
-  const list = getFilteredList();
-  presIndex = (presIndex + dir + list.length) % list.length;
+  presIndex = (presIndex + dir + candidates.length) % candidates.length;
   renderPresentationSlide();
 }
 function renderPresentationSlide() {
-  const list = getFilteredList();
-  const c = list[presIndex] || candidates[0];
-  document.getElementById('pres-counter').innerText = `${presIndex + 1} / ${list.length}`;
-  const isFinal = finalFive.includes(c.id);
+  const c = candidates[presIndex];
+  document.getElementById('pres-counter').innerText = `${presIndex + 1} / ${candidates.length}`;
+  const isPicked = pickedIds.includes(c.id);
   document.getElementById('pres-body').innerHTML = `
     <div>
       <div style="display:flex; gap:8px; margin-bottom:14px;">
@@ -2084,13 +1921,13 @@ function renderPresentationSlide() {
       <div style="font-size:1.15rem; line-height:1.7; color:#F1F5F9; background:rgba(255,255,255,0.06); padding:22px; border-radius:16px; margin-bottom:14px;">${c.desc}</div>
       <div style="font-size:0.98rem; color:#5EEAD4;">🧭 연계 위닝룰: “${c.winningRule}”</div>
     </div>
-    <div class="mini-phone" style="max-width:360px; margin:auto; width:100%;">
-      <div class="mini-screen">
-        <div class="mini-app-head">
-          <div class="mini-app-icon">${c.rawName}</div>
-          <div><b style="font-size:1.15rem;">${c.rawName}</b><div style="font-size:0.8rem; color:var(--muted);">상상인그룹 통합앱</div></div>
+    <div class="phone-mock" style="max-width:360px; margin:auto; width:100%;">
+      <div class="phone-inner">
+        <div class="app-row">
+          <div class="app-sq">${c.rawName}</div>
+          <div><b style="font-size:1.15rem; color:var(--charcoal);">${c.rawName}</b><div style="font-size:0.8rem; color:var(--muted);">상상인그룹 통합앱</div></div>
         </div>
-        <div class="mini-push"><b>[${c.rawName}]</b> 오늘의 먹거리를 신청하세요!</div>
+        <div class="push-bubble"><b>[${c.rawName}]</b> 오늘의 먹거리를 신청하세요!</div>
         <div style="font-size:0.84rem; color:var(--text-sub); margin-top:10px;">
           • 심의 점수: <b>${getTotalScore(c)} / 25점</b><br>
           • 앱스토어: ${c.precheck.appStore} / 상표: ${c.precheck.trademark}
@@ -2099,16 +1936,15 @@ function renderPresentationSlide() {
     </div>
   `;
   document.getElementById('pres-actions').innerHTML = `
-    <button class="btn ${isFinal ? 'btn-mint-soft' : 'btn-mint'}" style="font-size:1.05rem; padding:10px 24px; border-radius:999px;" onclick="toggleFinalFive(${c.id})">
-      ${isFinal ? '✅ 최종 5선 선정 완료' : '⭐ 최종 5선으로 선택'}
+    <button class="btn ${isPicked ? 'btn-mint-soft' : 'btn-mint'}" style="font-size:1.05rem; padding:10px 24px; border-radius:999px;" onclick="togglePick(${c.id})">
+      ${isPicked ? '✅ 비교함 담김' : '+ 비교함 담기'}
     </button>
   `;
 }
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    closeDupModal();
-    closeMvcModal();
+    closeDetailDrawer();
     closePresentation();
     return;
   }
@@ -2117,8 +1953,11 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') navPresentation(-1);
 });
 
-renderCardFeed();
-updateBars();
+// 초기 렌더링
+renderClusterCards();
+renderCompareBoard();
+renderStep5();
+updateSummary();
 </script>
 </body>
 </html>
