@@ -934,34 +934,35 @@
 <div class="container no-print">
 
   <!-- =========================================================
-       STEP 1. 공모 결과 개요
+       STEP 1. 공모 결과 개요 (인포그래픽 + 문항별 결과 + 희망 기능 아이디어)
   ========================================================== -->
   <section id="step-1" class="funnel-section">
     <div class="section-header">
       <div>
-        <span class="step-badge">STEP 01 · OVERVIEW</span>
+        <span class="step-badge">STEP 01 · INFOGRAPHIC OVERVIEW</span>
         <h2 class="section-title">1. 통합앱 네이밍 공모전 결과 개요</h2>
-        <p class="section-sub">전 계열사 임직원이 참여한 응모 현황과 중복·오류 정제 결과를 먼저 확인합니다.</p>
+        <p class="section-sub">전 계열사 임직원 참여 현황, 설문 문항별 핵심 인사이트, 그리고 임직원이 바라는 통합앱 희망 기능 제안을 한눈에 요약합니다.</p>
       </div>
       <button class="btn btn-outline btn-sm" onclick="toggleFullRawTable()" id="btn-raw-toggle">📊 전체 원본 응모 표 펼치기 ▼</button>
     </div>
 
-    <div class="panel-card">
-      <div class="kpi-grid">
+    <div class="panel-card" style="padding:30px;">
+      <!-- 1-1. 상단 인포그래픽 KPI 하이라이트 -->
+      <div class="kpi-grid" style="margin-bottom:26px;">
         <div class="kpi-box">
           <div class="label">총 접수 / 유효 응모 건수</div>
-          <div class="val">184건 <span style="font-size:0.9rem; color:var(--muted); font-weight:600;">/ 191건</span></div>
-          <div class="desc">동일인 중복 및 오입력 7건 사전 정제 완료</div>
+          <div class="val">184건 <span style="font-size:0.9rem; color:var(--muted); font-weight:600;">/ 191건 (96.3%)</span></div>
+          <div class="desc">동일인 중복·오입력 7건 정제 완료</div>
         </div>
         <div class="kpi-box">
-          <div class="label">네이밍 유형(군집) 분류</div>
-          <div class="val">5개 군집</div>
-          <div class="desc">상상인결합 · 명사형 · 동사형 · 영문형 · 위닝룰</div>
+          <div class="label">최다 중복 제안 키워드 TOP 3</div>
+          <div class="val" style="font-size:1.35rem;">상상톡 · 상상온 · 상상링크</div>
+          <div class="desc">직관적 그룹명 결합 + 연결/소통 키워드 강세</div>
         </div>
         <div class="kpi-box">
-          <div class="label">다수 중복 제안 키워드</div>
-          <div class="val">상상톡 · 상상온 · 상상링크</div>
-          <div class="desc">임직원 공통으로 가장 많이 언급된 대표 안</div>
+          <div class="label">임직원 최우선 네이밍 가치 1위</div>
+          <div class="val" style="font-size:1.45rem;">기억하기 쉬움 <span style="font-size:0.95rem; color:var(--mint-dark);">(41.8%)</span></div>
+          <div class="desc">2위 회사다움(24.5%) · 3위 부르기 편함(19.0%)</div>
         </div>
         <div class="kpi-box mint">
           <div class="label">금일 임원 심의 목표</div>
@@ -970,8 +971,167 @@
         </div>
       </div>
 
+      <!-- 1-2. 인포그래픽 차트 3열 (계열사별 참여 비중 / 문항별 응모자 선택 가치 / 네이밍 군집 분포) -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:18px; margin-bottom:26px;">
+        
+        <!-- 차트 1: 계열사별 참여 분포 (인포그래픽 바) -->
+        <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:16px; padding:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <strong style="color:var(--charcoal); font-size:0.96rem;">🏢 계열사별 응모 참여 분포</strong>
+            <span class="pill-tag">전 계열사 참여</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:0.83rem;">
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>상상인저축은행</b></span><span><b>54건</b> (29.3%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:29.3%; height:100%; background:var(--charcoal); border-radius:999px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>상상인 (지주)</b></span><span><b>42건</b> (22.8%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:22.8%; height:100%; background:var(--mint); border-radius:999px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>메디카코리아</b></span><span><b>31건</b> (16.8%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:16.8%; height:100%; background:#0D9488; border-radius:999px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>상상인플러스저축은행</b></span><span><b>26건</b> (14.1%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:14.1%; height:100%; background:#475569; border-radius:999px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>상상인증권 · 시너지이노베이션 외</b></span><span><b>31건</b> (17.0%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:17.0%; height:100%; background:#94A3B8; border-radius:999px;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 차트 2: 설문 문항별 결과 - 네이밍 시 가장 중요하게 고려한 가치 -->
+        <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:16px; padding:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <strong style="color:var(--charcoal); font-size:0.96rem;">📌 [문항 2] 응모자가 꼽은 핵심 가치</strong>
+            <span class="pill-tag pill-mint">직관성 압도적</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:0.83rem;">
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>1위. 기억하기 쉬움 (직관적 각인)</b></span><span style="color:var(--mint-dark); font-weight:800;">77건 (41.8%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:41.8%; height:100%; background:var(--mint); border-radius:999px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>2위. 회사다움 (상상인 정체성)</b></span><span><b>45건</b> (24.5%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:24.5%; height:100%; background:var(--charcoal); border-radius:999px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>3위. 부르기 편함 (3~4음절 어감)</b></span><span><b>35건</b> (19.0%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:19.0%; height:100%; background:#334155; border-radius:999px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;"><span><b>4위. 의미와 스토리 (위닝룰 연계)</b></span><span><b>27건</b> (14.7%)</span></div>
+              <div style="height:9px; background:#E2E8F0; border-radius:999px; overflow:hidden;"><div style="width:14.7%; height:100%; background:#64748B; border-radius:999px;"></div></div>
+            </div>
+          </div>
+          <div style="margin-top:12px; padding:8px 12px; background:white; border-radius:8px; border:1px solid var(--border); font-size:0.79rem; color:var(--text-sub);">
+            💡 <b>시사점:</b> 전체 응모작의 <b>78%가 3~4글자</b>로 집중되어, 길고 복잡한 설명형보다 짧고 부르기 쉬운 이름을 선호함.
+          </div>
+        </div>
+
+        <!-- 차트 3: 설문 문항별 결과 - 네이밍 유형(군집) 및 표기 형태 -->
+        <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:16px; padding:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <strong style="color:var(--charcoal); font-size:0.96rem;">🧩 [문항 3] 유형(군집) 및 언어 형태</strong>
+            <span class="pill-tag">5대 군집 분석</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+            <div style="background:white; border:1px solid var(--border); border-radius:10px; padding:10px; text-align:center;">
+              <div style="font-size:0.75rem; color:var(--muted); font-weight:700;">상상인·그룹명 결합</div>
+              <div style="font-size:1.25rem; font-weight:900; color:var(--charcoal);">46.2%</div>
+              <div style="font-size:0.72rem; color:var(--mint-dark); font-weight:700;">85건 (최다)</div>
+            </div>
+            <div style="background:white; border:1px solid var(--border); border-radius:10px; padding:10px; text-align:center;">
+              <div style="font-size:0.75rem; color:var(--muted); font-weight:700;">명사·동사·영문형</div>
+              <div style="font-size:1.25rem; font-weight:900; color:var(--charcoal);">39.1%</div>
+              <div style="font-size:0.72rem; color:var(--text-sub);">72건</div>
+            </div>
+          </div>
+          <div style="background:white; border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.81rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+              <span>• <b>위닝룰·도토리 특화형:</b></span><span><b>27건</b> (14.7%)</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span>• <b>표기 비율:</b> 한글 52% · 한영혼합 34% · 영문 14%</span>
+            </div>
+          </div>
+          <div style="margin-top:10px; font-size:0.79rem; color:var(--text-sub);">
+            🧭 <b>연계 위닝룰:</b> ‘연결(48%)’ > ‘존중(29%)’ > ‘도전(23%)’ 순으로 계열사 통합 소통에 대한 기대감이 높음.
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-3. 마지막 문항: [통합앱에 꼭 있었으면 하는 기능이나 서비스] 임직원 우수 아이디어 요약 -->
+      <div style="background:linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color:white; border-radius:18px; padding:24px 26px; border-left:5px solid var(--mint);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+          <div>
+            <span style="display:inline-block; background:rgba(0,164,153,0.22); color:#5EEAD4; font-size:0.75rem; font-weight:800; padding:3px 10px; border-radius:999px; margin-bottom:4px;">마지막 주관식 문항 분석 · Voice of Employees</span>
+            <h3 style="font-size:1.15rem; font-weight:800;">💬 “통합앱에 꼭 있었으면 하는 기능이나 서비스” 주요 아이디어 도출</h3>
+          </div>
+          <span style="font-size:0.82rem; color:#94A3B8;">응답률 89.1% (164건 유효 제안)</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
+          <!-- 카테고리 1 -->
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong style="color:#5EEAD4; font-size:0.95rem;">① 칭찬도토리 & 복지 리워드 확장</strong>
+              <span style="font-size:0.75rem; background:rgba(94,234,212,0.15); color:#5EEAD4; padding:2px 8px; border-radius:999px;">48건 (1위)</span>
+            </div>
+            <ul style="font-size:0.83rem; color:#E2E8F0; margin-left:16px; line-height:1.6;">
+              <li><b>도토리 기프티콘·사내카페 즉시 결제</b> 연동</li>
+              <li>걷기 프로젝트 걸음 수 ↔ 도토리 포인트 전환</li>
+              <li>익명 칭찬 릴레이 및 부서별 감사 랭킹</li>
+            </ul>
+          </div>
+
+          <!-- 카테고리 2 -->
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong style="color:#5EEAD4; font-size:0.95rem;">② 스마트 오피스 & 2차 업무 편의</strong>
+              <span style="font-size:0.75rem; background:rgba(255,255,255,0.12); color:#CBD5E1; padding:2px 8px; border-radius:999px;">44건 (2위)</span>
+            </div>
+            <ul style="font-size:0.83rem; color:#E2E8F0; margin-left:16px; line-height:1.6;">
+              <li><b>모바일 사원증(출입·복합기)</b> 및 회의실 실시간 예약</li>
+              <li>간편 연차/반차 신청 및 모바일 전자결재 알림</li>
+              <li>전 계열사 임직원 초성·업무 키워드 스마트 조직도</li>
+            </ul>
+          </div>
+
+          <!-- 카테고리 3 -->
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong style="color:#5EEAD4; font-size:0.95rem;">③ 먹거리·제휴 혜택 & 생활 밀착</strong>
+              <span style="font-size:0.75rem; background:rgba(255,255,255,0.12); color:#CBD5E1; padding:2px 8px; border-radius:999px;">39건 (3위)</span>
+            </div>
+            <ul style="font-size:0.83rem; color:#E2E8F0; margin-left:16px; line-height:1.6;">
+              <li><b>먹거리 신청 잔여 수량 실시간 알림</b> 및 메뉴 투표</li>
+              <li>여의도·분당 등 사옥 인근 제휴 맛집·병원 할인맵</li>
+              <li>콘도·휴양소 잔여 객실 오픈 푸시 및 원클릭 신청</li>
+            </ul>
+          </div>
+
+          <!-- 카테고리 4 -->
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong style="color:#5EEAD4; font-size:0.95rem;">④ 계열사 간 소통 & 위닝픽 인사이트</strong>
+              <span style="font-size:0.75rem; background:rgba(255,255,255,0.12); color:#CBD5E1; padding:2px 8px; border-radius:999px;">33건 (4위)</span>
+            </div>
+            <ul style="font-size:0.83rem; color:#E2E8F0; margin-left:16px; line-height:1.6;">
+              <li><b>타 계열사 주요 뉴스·성과 1분 브리핑</b> 피드</li>
+              <li>취미·운동 사내 동호회 번개 모임 및 중고장터</li>
+              <li>임원 추천 도서(북클럽) 요약 및 한 줄 서평 공유</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- 전체 원본 표 (기본 접힘, 필요 시 펼쳐서 확인) -->
-      <div id="full-raw-box" style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+      <div id="full-raw-box" style="display:none; margin-top:20px; padding-top:18px; border-top:1px solid var(--border);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
           <strong style="color:var(--charcoal);">전체 유효 후보 일람 (클릭 시 상세·중복 로데이터 열람)</strong>
           <input type="text" id="raw-filter-input" placeholder="후보명·슬로건 검색..." oninput="renderRawTable()" style="width:220px;">
